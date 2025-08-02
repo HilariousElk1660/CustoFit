@@ -134,3 +134,16 @@ button {
     width: 100%;
     height: 40px;
 }
+
+.password__forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.password__forgot a {
+  font-family: "Inter";
+  color: #64748b;
+  font-size: 12px;
+  line-height: 16px;
+}
