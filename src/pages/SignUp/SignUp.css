@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: hsl(214.3 31.8% 91.4%);
+}
+
+[role="button"],
+button {
+  cursor: pointer;
+}
+
+.form__container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  padding: 4rem 0;
+}
+
+.form__content {
+  color: #020817;
+  background-color: white;
+  border-width: 1px;
+  border-radius: 8px;
+  max-width: 448px;
+  width: 100%;
+}
+
+.login__signup__toggle__container {
+  outline: none;
+  color: #64748b;
+  padding: 4px;
+  background-color: #f1f5f9;
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+}
+
+.login__signup__toggle__container button {
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 6px 12px;
+  border-radius: 2px;
+  background-color: transparent;
+  color: #64748b;
+}
+
+.login__signup__toggle__container button.active {
+  color: #020817;
+  background-color: white;
+}
+
+.signup__form {
+    background: white;
+    margin-top: 8px;
+}
+
+.signup__form__header {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup__form__header h3 {
+    font-family: "Inter";
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.signup__form__header p {
+    margin-top: 6px;
+    color: #64748b;
+    font-family: "Inter";
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.signup__form__inputs {
+    padding: 0 24px 24px;
+}
+
+.signup__form__inputs label {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.signup__form__inputs input {
+    margin-top: 8px;
+    background-color: white;
+    border-color: #e2e8f0;
+    border-width: 1px;
+    border-radius: 6px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    font-family: "Inter";
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 12px;
+}
+
+.inputs__mt {
+    margin-top: 16px;
+}
+
+.signup__form__btn {
+    padding: 0 24px 24px;
+    display: flex;
+    align-items: center;
+}
+
+.signup__form__btn button {
+    color: #f8fafc;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    padding: 8px 16px;
+    background-color: #7c3aed;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 40px;
+}
+
+.password__forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.password__forgot a {
+  font-family: "Inter";
+  color: #64748b;
+  font-size: 12px;
+  line-height: 16px;
+}

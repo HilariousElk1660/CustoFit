@@ -1,0 +1,15 @@
+.gradient-text {
+  background: linear-gradient(90deg, #7c3aed, #82e0f5);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.css-51we07-MuiPopper-root {
+  transform: translate(1265px, 64px);
+  z-index: 99;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}

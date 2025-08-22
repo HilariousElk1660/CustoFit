@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+}
+
+.studio-container {
+  padding: 32px 0;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.studio-text-container {
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+.studio-main-text {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(to right, #7c3aed, #9333ea);
+  margin-bottom: 8px;
+}
+
+.studio-sub-text {
+  color: #64748b;
+  max-width: 672px;
+  margin: 0 auto;
+}
+
+.studio-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.studio-3d-model {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 2px rgba(59, 130, 246, 0.5),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  color: #020817;
+  border-width: 1px;
+  border-color: #e2e8f0;
+  border-radius: 8px;
+  height: 600px;
+}
+
+.studio-3d-model-inner-container {
+  padding: 0;
+  position: relative;
+}
+
+.studio-3d-model-container {
+  width: 100%;
+  position: relative;
+}
+
+.studio-controls {
+  backdrop-filter: blur(4px);
+  padding: 8px;
+  border-radius: 9999px;
+  gap: 8px;
+  align-items: center;
+  display: flex;
+  left: 50%;
+  bottom: 16px;
+  position: absolute;
+  transform: translateX(-50%);
+  background-color: transparent;
+}
+
+.studio-controls button {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  border-width: 1px;
+  border-color: #e2e8f0;
+  border-radius: 6px;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.studio-controls button.active {
+  color: #f8fafc;
+  background-color: #7c3aed;
+}

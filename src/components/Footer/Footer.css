@@ -1,0 +1,41 @@
+div.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-sizeSmall.css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13.1851px;
+    line-height: 16px;
+    color: rgba(148, 163, 184, 0.42);
+    box-sizing: border-box;
+    position: relative;
+    cursor: text;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    border-radius: 4px;
+    height: 100%;
+}
+
+input.css-1pzfmz2-MuiInputBase-input-MuiOutlinedInput-input {
+    color: white;
+}
+
+svg.svg-inline--fa{
+    margin-right: 14.13px;
+}
+
+.logo-footer {
+    display: block !important;
+    margin: 0 0 10px;
+}
+
+div.css-xtprh2-MuiContainer-root {
+    max-width: 1340px;
+}
+
+.social-icons svg {
+    cursor: pointer;
+}
+
+.footer-links {
+    color: #475569 !important;
+}
