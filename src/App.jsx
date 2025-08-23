@@ -15,6 +15,11 @@ import Studio from "./pages/Design Studio/Studio.jsx";
 import Products from "./pages/Products/Products.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx";
+import Orders from "./pages/Orders/Orders.jsx";
+import Settings from "./pages/Settings/Settings.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+import { ChatButton } from "./components/Assistant/ChatButton.jsx";
+import { ChatModal } from "./components/Assistant/ChatModal.jsx";
 
 function ProtectedRoute({ isAuthenticated, children }) {
   const location = useLocation();
@@ -26,10 +31,29 @@ function ProtectedRoute({ isAuthenticated, children }) {
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  // const [isAuthenticated, setIsAuthenticated] = useState(() => {
+  //   return localStorage.getItem("isAuthenticated") === "true";
+  // });
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isChatModalOpen, setIsChatModalOpen] = useState(false);
 
   const handleCartToggle = () => {
     setIsCartOpen((prev) => !prev);
+  };
+
+  const user = {
+    name: "Chibuzor Obi",
+    avatar: "/static/images/avatar/1.jpg",
+    menu: [
+      { label: "My Orders", path: "/orders" },
+      { label: "Settings", path: "/settings" },
+    ],
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    setIsAuthenticated(false);
+    navigate("/signup?mode=login");
   };
 
   return (
@@ -37,6 +61,8 @@ function App() {
       <Navbar
         isAuthenticated={isAuthenticated}
         onCartClick={handleCartToggle}
+        user={user}
+        onLogout={handleLogout}
       />
       <SideCart open={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <Routes>
@@ -88,7 +114,29 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Settings />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
+      <ChatButton onClick={() => setIsChatModalOpen(true)} />
+      <ChatModal
+        isOpen={isChatModalOpen}
+        onClose={() => setIsChatModalOpen(false)}
+      />
+      <Footer />
     </Router>
   );
 }

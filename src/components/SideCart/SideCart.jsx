@@ -12,6 +12,7 @@ import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import { useCart } from "../../context/CartContext.jsx";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router-dom";
+import './SideCart.css';
 
 const SideCart = ({ open, onClose }) => {
   const { cartItems, updateQuantity, removeItem, clearCart } = useCart();
@@ -31,7 +32,8 @@ const SideCart = ({ open, onClose }) => {
       PaperProps={{
         sx: {
           width: "500px",
-          bgcolor: "#0f0f19e3",
+          backgroundColor: "#0f0f19c1",
+          backdropFilter: "blur(3px)",
           border: "1px solid #ffffff1a",
         },
       }}
@@ -56,7 +58,7 @@ const SideCart = ({ open, onClose }) => {
           </Box>
         ) : (
           <>
-            <Box sx={{ mt: 4, flex: 1, overflowY: "auto" }}>
+            <Box sx={{ mt: 4, flex: 1, overflowY: "auto", scrollbarWidth: "none" }}>
               {cartItems.map((item) => (
                 <Box key={item.id} sx={{ display: "flex", py: 2, borderBottom: "1px solid", borderColor: "divider" }}>
                   <Box
@@ -86,7 +88,7 @@ const SideCart = ({ open, onClose }) => {
                       </Typography>
                       <Button
                         size="small"
-                        sx={{ color: "primary.main" }}
+                        sx={{ color: "#d32f2f" }}
                         onClick={() => removeItem(item.id)}
                       >
                         Remove
@@ -105,13 +107,13 @@ const SideCart = ({ open, onClose }) => {
               <Typography variant="body2" color="#f8fafcb3" sx={{ mb: 2, fontWeight: 400 }}>
                 Shipping and taxes calculated at checkout.
               </Typography>
-              <Button variant="contained" fullWidth sx={{ borderRadius: 999 }} onClick={() => {
+              <Button variant="contained" fullWidth sx={{ borderRadius: 999, bgcolor: "#949dff" }} onClick={() => {
                 navigate('/cart');
                 onClose();
               }}>
                 Cart
               </Button>
-              <Button fullWidth sx={{ mt: 1, color: "primary.main", textTransform: "none" }} onClick={handleContinueShopping}>
+              <Button fullWidth sx={{ mt: 1, color: "#7c3aed", textTransform: "none" }} onClick={handleContinueShopping}>
                 Continue Shopping
               </Button>
             </Box>

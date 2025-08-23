@@ -90,7 +90,7 @@ function Cart({ onCheckout }) {
                     <div className="cart-header">
                         <button className="back-btn">
                             <ArrowLeft size={20} />
-                            <Link to="/all-products">Continue Shopping</Link>
+                            <Link to="/products">Continue Shopping</Link>
                         </button>
                         <h1 className="cart-title">
                             <ShoppingCart size={28} />

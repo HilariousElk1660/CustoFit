@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../../context/CartContext.jsx";
-import { CheckCircle, ArrowLeft, User, MapPin, Truck, CreditCard } from "lucide-react";
+import {
+  CheckCircle,
+  ArrowLeft,
+  User,
+  MapPin,
+  Truck,
+  CreditCard,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Checkout.css";
 
 const Checkout = () => {
   const { cartItems } = useCart();
+  const { clearCart } = useCart();
   const [showSuccess, setShowSuccess] = useState(false);
   const [selectedShipping, setSelectedShipping] = useState("standard");
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(1);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -30,13 +38,21 @@ const Checkout = () => {
     shippingMethod: "standard",
     saveInfo: false,
     newsletter: false,
-  })
+  });
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
   const tax = subtotal * 0.08;
-  const shipping = formData.shippingMethod == "express" ? 13.99 : formData.shippingMethod == "overnight" ? 24.99 : 0;
+  const shipping =
+    formData.shippingMethod == "express"
+      ? 13.99
+      : formData.shippingMethod == "overnight"
+      ? 24.99
+      : 0;
   const total = subtotal + tax + shipping;
 
   const handleInputChange = (field, value) => {
@@ -82,19 +98,44 @@ const Checkout = () => {
   };
 
   const formatCardNumber = (value) => {
-    const digits = value.replace(/\D/g, '');
-    const formatted = digits.match(/.{1,4}/g)?.join(' ') || '';
+    const digits = value.replace(/\D/g, "");
+    const formatted = digits.match(/.{1,4}/g)?.join(" ") || "";
     return formatted;
   };
 
   const formatExpiryDate = (value) => {
-    const digits = value.replace(/D/g, '');
+    const digits = value.replace(/D/g, "");
     if (digits.length === 2) {
-      return digits.substring(0, 2) + '/' + digits.substring(2, 4);
+      return digits.substring(0, 2) + "/" + digits.substring(2, 4);
     }
     return digits;
   };
 
+  useEffect(() => {
+    if (showSuccess) {
+      const orderData = {
+        id: "ABC123XYZ",
+        date: new Date().toLocaleString(),
+        items: cartItems,
+        total: cartItems.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        ),
+      };
+
+      const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
+      localStorage.setItem(
+        "orders",
+        JSON.stringify([...existingOrders, orderData])
+      );
+    }
+  }, [showSuccess]);
+
+  useEffect(() => {
+    if (showSuccess) {
+      clearCart();
+    }
+  }, [showSuccess]);
 
   if (showSuccess) {
     return (
@@ -103,10 +144,15 @@ const Checkout = () => {
           <div className="success-page">
             <CheckCircle className="success-icon" color="#28a745" />
             <h1>Order Placed Successfully!</h1>
-            <p>Thank you for shopping with us. Your order has been confirmed.</p>
+            <p>
+              Thank you for shopping with us. Your order has been confirmed.
+            </p>
             <div className="order-number">Order #ABC123XYZ</div>
             <Link to="/products">
               <button className="continue-btn">Continue Shopping</button>
+            </Link>
+            <Link to="/orders">
+              <button className="view-orders-btn">My Orders</button>
             </Link>
           </div>
         </div>
@@ -120,10 +166,10 @@ const Checkout = () => {
         <div className="checkout-content">
           <div className="checkout-header">
             {/* <Link to="/cart"> */}
-              <button type="button" className="back-btn">
-                <ArrowLeft size={20} />
-                Back
-              </button>
+            <button type="button" className="back-btn">
+              <ArrowLeft size={20} />
+              Back
+            </button>
             {/* </Link> */}
           </div>
 
@@ -145,9 +191,11 @@ const Checkout = () => {
           <div className="checkout-layout">
             <div className="checkout-form">
               {currentStep === 1 && (
-                <form className="checkout-form" onSubmit={(e) => {
-                  e.preventDefault()
-                }}
+                <form
+                  className="checkout-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
                 >
                   <div className="form-section">
                     <h3>
@@ -161,20 +209,28 @@ const Checkout = () => {
                         <input
                           type="text"
                           id="sml-width"
-                          onChange={(e) => handleInputChange("firstName", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("firstName", e.target.value)
+                          }
                           className={errors.firstName ? "error" : ""}
                         />
-                        {errors.firstName && <span className="error-text">{errors.firstName}</span>}
+                        {errors.firstName && (
+                          <span className="error-text">{errors.firstName}</span>
+                        )}
                       </div>
                       <div className="form-group">
                         <label>Last Name *</label>
                         <input
                           type="text"
                           id="sml-width"
-                          onChange={(e) => handleInputChange("lastName", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("lastName", e.target.value)
+                          }
                           className={errors.lastName ? "error" : ""}
                         />
-                        {errors.lastName && <span className="error-text">{errors.lastName}</span>}
+                        {errors.lastName && (
+                          <span className="error-text">{errors.lastName}</span>
+                        )}
                       </div>
                     </div>
 
@@ -183,10 +239,14 @@ const Checkout = () => {
                       <input
                         type="email"
                         id="lrg-width"
-                        onChange={(e) => handleInputChange("email", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
                         className={errors.email ? "error" : ""}
                       />
-                      {errors.email && <span className="error-text">{errors.email}</span>}
+                      {errors.email && (
+                        <span className="error-text">{errors.email}</span>
+                      )}
                     </div>
 
                     <div className="form-group">
@@ -194,7 +254,9 @@ const Checkout = () => {
                       <input
                         type="tel"
                         id="lrg-width"
-                        onChange={(e) => handleInputChange("phone", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("phone", e.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -210,10 +272,14 @@ const Checkout = () => {
                       <input
                         type="text"
                         id="lrg-width"
-                        onChange={(e) => handleInputChange("address", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("address", e.target.value)
+                        }
                         className={errors.address ? "error" : ""}
                       />
-                      {errors.address && <span className="error-text">{errors.address}</span>}
+                      {errors.address && (
+                        <span className="error-text">{errors.address}</span>
+                      )}
                     </div>
 
                     <div className="form-group">
@@ -221,7 +287,9 @@ const Checkout = () => {
                       <input
                         type="text"
                         id="lrg-width"
-                        onChange={(e) => handleInputChange("apartment", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("apartment", e.target.value)
+                        }
                       />
                     </div>
 
@@ -231,16 +299,22 @@ const Checkout = () => {
                         <input
                           type="text"
                           id="sml-width"
-                          onChange={(e) => handleInputChange("city", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("city", e.target.value)
+                          }
                           className={errors.city ? "error" : ""}
                         />
-                        {errors.city && <span className="error-text">{errors.city}</span>}
+                        {errors.city && (
+                          <span className="error-text">{errors.city}</span>
+                        )}
                       </div>
                       <div className="form-group">
                         <label>State *</label>
                         <select
                           id="sml-width"
-                          onChange={(e) => handleInputChange("state", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("state", e.target.value)
+                          }
                           className={errors.state ? "error" : ""}
                         >
                           <option value="">Select State</option>
@@ -249,17 +323,23 @@ const Checkout = () => {
                           <option value="TX">Texas</option>
                           <option value="FL">Florida</option>
                         </select>
-                        {errors.state && <span className="error-text">{errors.state}</span>}
+                        {errors.state && (
+                          <span className="error-text">{errors.state}</span>
+                        )}
                       </div>
                       <div className="form-group">
                         <label>ZIP Code *</label>
                         <input
                           type="text"
                           id="sml-width"
-                          onChange={(e) => handleInputChange("zipCode", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("zipCode", e.target.value)
+                          }
                           className={errors.zipCode ? "error" : ""}
                         />
-                        {errors.zipCode && <span className="error-text">{errors.zipCode}</span>}
+                        {errors.zipCode && (
+                          <span className="error-text">{errors.zipCode}</span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -277,7 +357,9 @@ const Checkout = () => {
                           name="shipping"
                           value="standard"
                           checked={formData.shippingMethod === "standard"}
-                          onChange={(e) => handleInputChange("shippingMethod", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("shippingMethod", e.target.value)
+                          }
                         />
                         <div className="shipping-details">
                           <div className="shipping-name">Standard Shipping</div>
@@ -292,7 +374,9 @@ const Checkout = () => {
                           name="shipping"
                           value="express"
                           checked={formData.shippingMethod === "express"}
-                          onChange={(e) => handleInputChange("shippingMethod", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("shippingMethod", e.target.value)
+                          }
                         />
                         <div className="shipping-details">
                           <div className="shipping-name">Express Shipping</div>
@@ -307,10 +391,14 @@ const Checkout = () => {
                           name="shipping"
                           value="overnight"
                           checked={formData.shippingMethod === "overnight"}
-                          onChange={(e) => handleInputChange("shippingMethod", e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("shippingMethod", e.target.value)
+                          }
                         />
                         <div className="shipping-details">
-                          <div className="shipping-name">Overnight Shipping</div>
+                          <div className="shipping-name">
+                            Overnight Shipping
+                          </div>
                           <div className="shipping-time">Next business day</div>
                         </div>
                         <div className="shipping-price">R 24.99</div>
@@ -318,17 +406,24 @@ const Checkout = () => {
                     </div>
                   </div>
 
-                  <button type="button" className="continue-btn" onClick={handleContinueToPayment}>
+                  <button
+                    type="button"
+                    className="continue-btn"
+                    onClick={handleContinueToPayment}
+                  >
                     Continue to Payment
                   </button>
                 </form>
               )}
 
               {currentStep === 2 && (
-                <form className="checkout-form" onSubmit={(e) => {
-                  e.preventDefault()
-                  handlePlaceOrder()
-                }}>
+                <form
+                  className="checkout-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handlePlaceOrder();
+                  }}
+                >
                   <div className="form-section">
                     <h3>
                       <CreditCard size={20} />
@@ -340,12 +435,19 @@ const Checkout = () => {
                       <input
                         type="text"
                         value={formData.cardNumber}
-                        onChange={(e) => handleInputChange("cardNumber", formatCardNumber(e.target.value))}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "cardNumber",
+                            formatCardNumber(e.target.value)
+                          )
+                        }
                         placeholder="1234 5678 9012 3456"
                         maxLength="19"
                         className={errors.cardNumber ? "error" : ""}
                       />
-                      {errors.cardNumber && <span className="error-text">{errors.cardNumber}</span>}
+                      {errors.cardNumber && (
+                        <span className="error-text">{errors.cardNumber}</span>
+                      )}
                     </div>
 
                     <div className="form-row">
@@ -354,24 +456,40 @@ const Checkout = () => {
                         <input
                           type="text"
                           value={formData.expiryDate}
-                          onChange={(e) => handleInputChange("expiryDate", formatExpiryDate(e.target.value))}
+                          onChange={(e) =>
+                            handleInputChange(
+                              "expiryDate",
+                              formatExpiryDate(e.target.value)
+                            )
+                          }
                           placeholder="MM/YY"
                           maxLength="5"
                           className={errors.expiryDate ? "error" : ""}
                         />
-                        {errors.expiryDate && <span className="error-text">{errors.expiryDate}</span>}
+                        {errors.expiryDate && (
+                          <span className="error-text">
+                            {errors.expiryDate}
+                          </span>
+                        )}
                       </div>
                       <div className="form-group">
                         <label>CVV *</label>
                         <input
                           type="text"
                           value={formData.cvv}
-                          onChange={(e) => handleInputChange("cvv", e.target.value.replace(/D/g, "").substring(0, 4))}
+                          onChange={(e) =>
+                            handleInputChange(
+                              "cvv",
+                              e.target.value.replace(/D/g, "").substring(0, 4)
+                            )
+                          }
                           placeholder="123"
                           maxLength="3"
                           className={errors.cvv ? "error" : ""}
                         />
-                        {errors.cvv && <span className="error-text">{errors.cvv}</span>}
+                        {errors.cvv && (
+                          <span className="error-text">{errors.cvv}</span>
+                        )}
                       </div>
                     </div>
 
@@ -381,11 +499,17 @@ const Checkout = () => {
                         id="cardName"
                         type="text"
                         value={formData.cardName}
-                        onChange={(e) => handleInputChange("cardName", e.target.value)}
-                        className={`form-control ${errors.cardName ? "error" : ""}`}
+                        onChange={(e) =>
+                          handleInputChange("cardName", e.target.value)
+                        }
+                        className={`form-control ${
+                          errors.cardName ? "error" : ""
+                        }`}
                         autoComplete="cc-name"
                       />
-                      {errors.cardName && <span className="error-text">{errors.cardName}</span>}
+                      {errors.cardName && (
+                        <span className="error-text">{errors.cardName}</span>
+                      )}
                     </div>
                   </div>
 
@@ -395,7 +519,9 @@ const Checkout = () => {
                         <input
                           type="checkbox"
                           checked={formData.saveInfo}
-                          onChange={(e) => handleInputChange("saveInfo", e.target.checked)}
+                          onChange={(e) =>
+                            handleInputChange("saveInfo", e.target.checked)
+                          }
                         />
                         Save my information for faster checkout
                       </label>
@@ -404,7 +530,9 @@ const Checkout = () => {
                         <input
                           type="checkbox"
                           checked={formData.newsletter}
-                          onChange={(e) => handleInputChange("newsletter", e.target.checked)}
+                          onChange={(e) =>
+                            handleInputChange("newsletter", e.target.checked)
+                          }
                         />
                         Subscribe to our newsletter for exclusive offers
                       </label>
@@ -412,11 +540,21 @@ const Checkout = () => {
                   </div>
 
                   <div className="form-actions">
-                    <button type="button" onClick={() => setCurrentStep(1)} className="back-step-btn">
+                    <button
+                      type="button"
+                      onClick={() => setCurrentStep(1)}
+                      className="back-step-btn"
+                    >
                       Back to Shipping
                     </button>
-                    <button type="submit" className="place-order-btn" disabled={showSuccess}>
-                      {showSuccess ? "Processing..." : `Place Order - $${total.toFixed(2)}`}
+                    <button
+                      type="submit"
+                      className="place-order-btn"
+                      disabled={showSuccess}
+                    >
+                      {showSuccess
+                        ? "Processing..."
+                        : `Place Order - R ${total.toFixed(2)}`}
                     </button>
                   </div>
                 </form>
@@ -431,9 +569,7 @@ const Checkout = () => {
                     <img src={item.image} alt={item.name} />
                     <div className="item-info">
                       <div className="item-name">{item.name}</div>
-                      <div className="item-details">
-                        Qty: {item.quantity}
-                      </div>
+                      <div className="item-details">Qty: {item.quantity}</div>
                     </div>
                     <div className="item-price">
                       R{(item.price * item.quantity).toFixed(2)}

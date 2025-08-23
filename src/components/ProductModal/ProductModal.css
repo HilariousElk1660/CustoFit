@@ -1,0 +1,79 @@
+.minimal-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  max-width: 720px;
+  width: 90%;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: -25px;
+  left: 653px;
+  color: #555;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.modal-image {
+  width: 40%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.modal-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.modal-info h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-info p {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.action-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: #7c3aed;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-decoration: none;
+}
+
+.action-btn:hover {
+  background: #7c3aede6;
+}

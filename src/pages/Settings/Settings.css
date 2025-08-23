@@ -1,0 +1,60 @@
+.settings-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+    font-family: "Segoe UI", sans-serif;
+    transition: background 0.3s ease;
+  }
+  
+  .settings-container.light {
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  .settings-container.dark {
+    background: #1e1e1e;
+    color: #eee;
+  }
+  
+  .settings-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .settings-group label {
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+  
+  .settings-group input,
+  .settings-group select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .settings-group input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+  
+  .avatar-preview {
+    margin-top: 0.5rem;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+  }
+  
+  .save-btn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  

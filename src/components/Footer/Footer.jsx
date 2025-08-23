@@ -23,6 +23,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <Box
+    className="footer"
       sx={{ backgroundColor: "white", borderTop: "1px solid #e5e7eb", mt: 4 }}
     >
       <Container maxWidth="xl" sx={{ padding: "40px 26px 20px" }}>

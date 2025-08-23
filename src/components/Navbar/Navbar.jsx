@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import {
@@ -8,22 +8,44 @@ import {
   UserIcon,
 } from "../../assets/Icons.jsx";
 import Box from "@mui/material/Box";
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
 import Popper from "@mui/material/Popper";
 import Fade from "@mui/material/Fade";
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useCart } from "../../context/CartContext.jsx";
 
-function Navbar({ isAuthenticated, onCartClick }) {
+function Navbar({ isAuthenticated, onCartClick, user, onLogout }) {
   const location = useLocation();
   const showIcons = isAuthenticated && location.pathname !== "/signup";
   const { cartItems } = useCart();
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("userSettings"));
+    if (saved) {
+      setAvatar(saved.avatar || "");
+      setName(saved.name || "");
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const updated = JSON.parse(localStorage.getItem("userSettings"));
+      if (updated) {
+        setAvatar(updated.avatar || "");
+        setName(updated.name || "");
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    setOpen((previousOpen) => !previousOpen);
+    setOpen((prev) => !prev);
   };
 
   const canBeOpen = open && Boolean(anchorEl);
@@ -65,16 +87,19 @@ function Navbar({ isAuthenticated, onCartClick }) {
                     }}
                   >
                     <div className="popper-content">
-                      <Link to="/profile" className="popper-link bd_btm">
-                      <Avatar alt="Chibuzor Obi" src="/static/images/avatar/1.jpg" /> Chibuzor Obi <div></div>
+                      <Link className="popper-link bd_btm">
+                        <Avatar alt={name || "User"} src={avatar || ""} />
                       </Link>
-                      <Link to="/orders" className="popper-link">
-                        My Orders
-                      </Link>
-                      <Link to="/settings" className="popper-link">
-                        Settings
-                      </Link>
-                      <button className="popper-logout">Log Out <ExitToAppIcon /></button>
+
+                      {user?.menu?.map((item, idx) => (
+                        <Link key={idx} to={item.path} className="popper-link">
+                          {item.label}
+                        </Link>
+                      ))}
+
+                      <button className="popper-logout" onClick={onLogout}>
+                        Log Out <ExitToAppIcon />
+                      </button>
                     </div>
                   </Box>
                 </Fade>

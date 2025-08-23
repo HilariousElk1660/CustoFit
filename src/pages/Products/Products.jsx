@@ -6,12 +6,17 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Divider from "@mui/material/Divider";
+import ProductModal from "../../components/ProductModal/ProductModal.jsx";
+import { useCart } from "../../context/CartContext";
 import "./Products.css";
 
 export default function Products() {
-  // const [products, setProducts] = useState([])
+  // const [products, setProducts] = useState([]);
+  const { addItem } = useCart();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   // useEffect(() => {
   //   (async () => {
@@ -31,18 +36,22 @@ export default function Products() {
   //   })();
   // }, []);
 
-  const filteredProducts = products.filter((p) => {
-    let matchesFilter = false;
+  const handleImageClick = (product) => {
+    setSelectedProduct(product);
+    setModalOpen(true);
+  };
 
-    if (filter === "All") {
-      matchesFilter = true;
-    } else if (filter === "Customisable") {
-      matchesFilter = p.customisable === true;
-    } else if (p.category?.toLowerCase() === filter.toLowerCase()) {
-      matchesFilter = true;
-    } else if (p.tag?.toLowerCase() === filter.toLowerCase()) {
-      matchesFilter = true;
-    }
+  const handleModalClose = () => {
+    setModalOpen(false);
+    setSelectedProduct(null);
+  };
+
+  const filteredProducts = products.filter((p) => {
+    const matchesFilter =
+      filter === "All" ||
+      (filter === "Customisable" && p.customisable) ||
+      p.category?.toLowerCase() === filter.toLowerCase() ||
+      p.tag?.toLowerCase() === filter.toLowerCase();
 
     const matchesSearch = (p.name || "")
       .toLowerCase()
@@ -56,61 +65,61 @@ export default function Products() {
     (p) => !p.customisable
   );
 
+  // const handleAddToCart = async (productId) => {
+  //   try {
+  //     const res = await fetch("http://localhost:3000/cart", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ productId, quantity: 1 }),
+  //     });
+  //     if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  //     alert("Product added to cart!");
+  //   } catch (e) {
+  //     alert("Couldn't add to cart.");
+  //     console.error(e);
+  //   }
+  // };
+
   const ProductCard = ({ product }) => (
     <div key={product.id} className="product-card">
       <img
         src={product.image || "/placeholder.jpg"}
         alt={product.name}
         className="product-image"
+        onClick={() => handleImageClick(product)}
+        style={{ cursor: "pointer" }}
       />
       <Divider />
       <h2 className="product-name">{product.name}</h2>
       <p className="product-description">{product.description}</p>
       <p className="product-price">R {Number(product.price || 0).toFixed(0)}</p>
       {product.tag && (
-        <span className={`product-tag tag-${product.tag.toLowerCase()}`}>
+        <span className={`product-tag tag-${product.tag.toLowerCase().trim()}`}>
           {product.tag}
         </span>
       )}
       <div className="product-actions">
         {product.customisable && (
-          <Link to={`/design/${product.id}`} className="product-btn customize">
+          <Link to={`/studio`} className="product-btn customize">
             Customise
           </Link>
         )}
-        <button
-          onClick={() => handleAddToCart(product.id)}
-          className="product-btn add"
-        >
+        <button onClick={() => addItem(product, 1)} className="product-btn add">
           Add to Cart
         </button>
       </div>
     </div>
   );
 
-  const handleAddToCart = async (productId) => {
-    try {
-      const res = await fetch("http://localhost:3000/cart", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId, quantity: 1 }),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      alert("Product added to cart!");
-    } catch (e) {
-      alert("Couldn't add to cart.");
-      console.error(e);
-    }
-  };
-
   return (
     <div className="products-container">
       <h1 className="products-title">Our Collection</h1>
-      <h1>Products</h1>
+      <h1 className="">Products</h1>
       <p className="products-subtitle">
         Browse our collection of clothing items. Select any product to start
         designing.
       </p>
+
       <div className="products-controls">
         <div className="products-search-container">
           <SearchIcon />
@@ -126,6 +135,7 @@ export default function Products() {
           <Select value={filter} onChange={(e) => setFilter(e.target.value)}>
             <MenuItem value="All">All</MenuItem>
             <MenuItem value="Customisable">Customisable</MenuItem>
+            <MenuItem value="Non-Customisable">Non-Customisable</MenuItem>
             <MenuItem value="Bestseller">Bestseller</MenuItem>
             <MenuItem value="Classic">Classic</MenuItem>
             <MenuItem value="Popular">Popular</MenuItem>
@@ -138,6 +148,7 @@ export default function Products() {
           </Select>
         </FormControl>
       </div>
+
       {customisableProducts.length > 0 && (
         <>
           <h1 className="products-title">Customisable Products</h1>
@@ -163,6 +174,12 @@ export default function Products() {
       {filteredProducts.length === 0 && (
         <p className="products-subtitle">No products found.</p>
       )}
+
+      <ProductModal
+        open={modalOpen}
+        onClose={handleModalClose}
+        product={selectedProduct}
+      />
     </div>
   );
 }

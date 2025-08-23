@@ -47,7 +47,7 @@ export const products = [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/long%20sleeve.jpg",
     name: "Long Sleeve Tee",
     description: "Warm long sleeve.",
-    price: 800,
+    price: 300,
     category: "Outerwear",
     tag: "Winter Collection",
     customisable: true,

@@ -79,6 +79,7 @@ function SignUp({ setIsAuthenticated }) {
         return;
       }
 
+      localStorage.setItem("isAuthenticated", "true");
       setIsAuthenticated(true);
       console.log("Login success:", data);
       navigate("/");

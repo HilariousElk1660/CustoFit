@@ -1,19 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CustomizePanel.css";
+import { products as productData } from "../../pages/Products/productData.jsx";
+import { useCart } from "../../context/CartContext"; // ✅ import your cart context
 
 const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
+  const { addItem } = useCart(); // ✅ get addItem from context
+
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [showProductDropdown, setShowProductDropdown] = useState(false);
+  const [showSizeDropdown, setShowSizeDropdown] = useState(false);
 
-  const incrementQuantity = () => {
-    setQuantity((prev) => prev + 1);
-  };
+  useEffect(() => {
+    const filtered = productData.filter((p) => p.customisable);
+    setProducts(filtered);
+    if (filtered.length > 0) {
+      setSelectedProduct(filtered[0]);
+      setSize(filtered[0].sizes[0]);
+    }
+  }, []);
 
-  const decrementQuantity = () => {
+  const incrementQuantity = () => setQuantity((prev) => prev + 1);
+  const decrementQuantity = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+  const handleAddToCart = () => {
+    if (!selectedProduct || !size) return;
+
+    const item = {
+      id: selectedProduct.id,
+      name: selectedProduct.name,
+      price: selectedProduct.price,
+      description: selectedProduct.description,
+      size,
+      color: hoodieColor,
+      quantity,
+      image: selectedProduct.image, // ✅ include product image
+    };
+
+    addItem(item, quantity); // ✅ use CartContext to add to cart
   };
 
   return (
     <div className="customize-panel">
+      {/* Header */}
       <div className="customize-panel-header">
         <h3>Customise Your Design</h3>
         <p>Select product, colors, and materials</p>
@@ -21,109 +53,70 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
 
       <div className="customize-panel-container">
         <div>
+          {/* Tabs */}
           <div className="customize-panel-content-header">
-            <button className="toggle-button-products">
-              {/* shirt icon */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="shirt-svg"
-              >
-                <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
-              </svg>
-              Products
-            </button>
-
-            <button className="toggle-button-export">
-              {/* export icon */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="export-svg"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" x2="12" y1="15" y2="3" />
-              </svg>
-              Export
-            </button>
+            <button className="toggle-button-products">Products</button>
+            <button className="toggle-button-export">Export</button>
           </div>
 
+          {/* Body */}
           <div className="customize-panel-content-body">
+            {/* Product Selection */}
             <div className="item">
               <label htmlFor="model-type">Product</label>
-              <button id="model-type" className="products-dropdown open">
+              <button
+                id="model-type"
+                className="products-dropdown open"
+                onClick={() => setShowProductDropdown((prev) => !prev)}
+              >
                 <span>
                   <div className="active-product">
-                    <span className="product-name">Hoodie - R 400.00</span>
+                    <span className="product-name">
+                      {selectedProduct?.name} - R {selectedProduct?.price}.00
+                    </span>
                     <span className="product-description">
-                      Premium pullover hoodie with soft inner lining
+                      {selectedProduct?.description}
                     </span>
                   </div>
                 </span>
                 <svg
+                  className="dropdown-icon"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="dropdown-icon"
-                  aria-hidden="true"
+                  fill="none"
+                  viewBox="0 0 24 24"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </button>
+              {showProductDropdown && (
+                <div className="dropdown-list">
+                  {products.map((product) => (
+                    <div
+                      key={product.id}
+                      className="dropdown-item"
+                      onClick={() => {
+                        setSelectedProduct(product);
+                        setSize(product.sizes[0]);
+                        setShowProductDropdown(false);
+                      }}
+                    >
+                      {product.name} - R {product.price}.00
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
+            {/* Color Picker */}
             <div className="item mt-16">
-              <label
-                htmlFor="color-selection"
-                className="color-selection-label"
-              >
-                {/* color palette icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="color-palette-svg"
-                >
-                  <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
-                  <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
-                  <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
-                  <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
-                  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
-                </svg>
-                Color Selection
-              </label>
+              <label htmlFor="color-selection">Color Selection</label>
               <div className="color-selection">
                 <input
                   type="color"
                   value={hoodieColor}
-                  name="color-selection"
                   id="color-selection"
                   className="color-picker"
                   onChange={(e) => setHoodieColor(e.target.value)}
@@ -137,28 +130,45 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
               </div>
             </div>
 
+            {/* Size Selection */}
             <div className="item mt-16">
               <label htmlFor="size-selection">Size</label>
-              <button className="size-dropdown">
-                <span>M</span>
+              <button
+                className="size-dropdown"
+                onClick={() => setShowSizeDropdown((prev) => !prev)}
+              >
+                <span>{size}</span>
                 <svg
+                  className="dropdown-icon"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="dropdown-icon"
-                  aria-hidden="true"
+                  fill="none"
+                  viewBox="0 0 24 24"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </button>
+              {showSizeDropdown && (
+                <div className="dropdown-list">
+                  {selectedProduct?.sizes.map((s) => (
+                    <div
+                      key={s}
+                      className="dropdown-item"
+                      onClick={() => {
+                        setSize(s);
+                        setShowSizeDropdown(false);
+                      }}
+                    >
+                      {s}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
+            {/* Quantity */}
             <div className="item mt-16">
               <label htmlFor="quantity">Quantity</label>
               <div className="mt-16">
@@ -182,14 +192,19 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
         </div>
       </div>
 
+      {/* Footer */}
       <div className="panel-footer">
         <div className="panel-footer-left">
-          <div className="panel-footer-price">R {400 * quantity}.00</div>
+          <div className="panel-footer-price">
+            R {selectedProduct?.price * quantity}.00
+          </div>
           <div className="panel-footer-item-count">
             {quantity} item{quantity > 1 ? "s" : ""} • Free shipping
           </div>
         </div>
-        <button className="panel-footer-button">Add to Cart</button>
+        <button className="panel-footer-button" onClick={handleAddToCart}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );
