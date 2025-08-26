@@ -48,6 +48,7 @@ function SignUp({ setIsAuthenticated }) {
 
       alert("Sign up successful!");
       setFormData({ name: "", email: "", password: "", confirmPassword: "" });
+      navigate("/signup?mode=login");
     } catch (err) {
       console.error("Sign up error:", err);
       alert(`Error: ${err.message}`);
@@ -81,6 +82,7 @@ function SignUp({ setIsAuthenticated }) {
 
       localStorage.setItem("isAuthenticated", "true");
       setIsAuthenticated(true);
+      alert(`Welcome back, ${data.name}!`)
       console.log("Login success:", data);
       navigate("/");
     } catch (error) {

@@ -16,7 +16,7 @@ import { useRef, useEffect, useState } from "react";
 import "./ChatModal.css";
 import { SparklesIcon } from "../../assets/Icons";
 
-export function ChatModal({ isOpen, onClose, user }) {
+export function ChatModal({ isOpen, onClose, user, isAuthenticated }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);

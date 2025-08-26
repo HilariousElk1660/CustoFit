@@ -89,6 +89,7 @@ function Navbar({ isAuthenticated, onCartClick, user, onLogout }) {
                     <div className="popper-content">
                       <Link className="popper-link bd_btm">
                         <Avatar alt={name || "User"} src={avatar || ""} />
+                        <p className="popper-greeting">{name}</p>
                       </Link>
 
                       {user?.menu?.map((item, idx) => (

@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignUp from "./pages/SignUp/SignUp.jsx";
 import Home from "./pages/Home/Home.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
@@ -23,6 +23,7 @@ import { ChatModal } from "./components/Assistant/ChatModal.jsx";
 
 function ProtectedRoute({ isAuthenticated, children }) {
   const location = useLocation();
+
   if (location.pathname === "/signup") {
     return children;
   }
@@ -131,11 +132,20 @@ function App() {
           }
         />
       </Routes>
-      <ChatButton onClick={() => setIsChatModalOpen(true)} />
+
+      {isAuthenticated && (
+        <ChatButton
+          onClick={() => setIsChatModalOpen(true)}
+          isAuthenticated={isAuthenticated}
+        />
+      )}
+
       <ChatModal
         isOpen={isChatModalOpen}
         onClose={() => setIsChatModalOpen(false)}
+        isAuthenticated={isAuthenticated}
       />
+
       <Footer />
     </Router>
   );
