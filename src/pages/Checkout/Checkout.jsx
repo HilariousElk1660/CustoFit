@@ -8,6 +8,7 @@ import {
   Truck,
   CreditCard,
 } from "lucide-react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router-dom";
 import "./Checkout.css";
 
@@ -142,7 +143,10 @@ const Checkout = () => {
       <>
         <div className="checkout-container">
           <div className="success-page">
-            <CheckCircle className="success-icon" color="#28a745" />
+            <DotLottieReact
+              src="https://lottie.host/9ad42da6-1686-4a70-a485-72d9fd01f40d/2QxCQ9Fa8B.lottie"
+              autoplay
+            />
             <h1>Order Placed Successfully!</h1>
             <p>
               Thank you for shopping with us. Your order has been confirmed.

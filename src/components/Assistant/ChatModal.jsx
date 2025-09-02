@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Dialog,
   DialogTitle,
@@ -160,7 +161,7 @@ export function ChatModal({ isOpen, onClose, user, isAuthenticated }) {
                     }}
                   >
                     <img
-                      style={{ width: "100%", height: "100%" }}
+                      style={{ height: "100%" }}
                       src="https://trello-burndown-chart.vercel.app/logo.png"
                       alt=""
                     />

@@ -1,0 +1,7 @@
+body.dark .shop-button {
+    background: #3acaed !important;
+}
+
+body.dark .studio-button {
+    border-color: #3acaed;
+}

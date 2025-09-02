@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
+import React from "react";
 import SignUp from "./pages/SignUp/SignUp.jsx";
 import Home from "./pages/Home/Home.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";

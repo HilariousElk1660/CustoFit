@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import React from "react";
+import Modal from "../../components/ui/Modal/Modal.jsx";
 import "./Settings.css";
 
 export default function Settings() {
@@ -8,8 +10,8 @@ export default function Settings() {
   const [theme, setTheme] = useState("light");
   const [avatar, setAvatar] = useState(null);
   const [password, setPassword] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
-  // Load saved settings
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("userSettings"));
     if (saved) {
@@ -39,22 +41,25 @@ export default function Settings() {
       avatar,
     };
     localStorage.setItem("userSettings", JSON.stringify(settings));
-    alert("Settings saved!");
-    window.location.reload();
+    setShowModal(true);
   };
 
   return (
     <div className={`settings-container ${theme}`}>
-      <h1>Settings</h1>
+      <h1 className="settings-heading">Settings</h1>
 
       <div className="settings-group">
-        <label>name</label>
+        <label>Name</label>
         <input value={name} onChange={(e) => setName(e.target.value)} />
       </div>
 
       <div className="settings-group">
         <label>Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
 
       <div className="settings-group">
@@ -71,7 +76,9 @@ export default function Settings() {
       <div className="settings-group">
         <label>Avatar</label>
         <input type="file" accept="image/*" onChange={handleAvatarChange} />
-        {avatar && <img src={avatar} alt="Avatar Preview" className="avatar-preview" />}
+        {avatar && (
+          <img src={avatar} alt="Avatar Preview" className="avatar-preview" />
+        )}
       </div>
 
       <div className="settings-group">
@@ -87,6 +94,15 @@ export default function Settings() {
       <button className="save-btn" onClick={handleSave}>
         Save Changes
       </button>
+      {showModal && (
+        <Modal
+          message="Settings saved successfully!"
+          onClose={() => {
+            setShowModal(false);
+            window.location.reload();
+          }}
+        />
+      )}
     </div>
   );
 }

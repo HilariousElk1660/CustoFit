@@ -1,3 +1,4 @@
+import React from "react";
 import Page from "../../components/Landing Page/Page.jsx";
 import Featured from "../../components/Featured/Featured.jsx";
 import Category from "../../components/Category/Category.jsx";

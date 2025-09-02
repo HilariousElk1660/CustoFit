@@ -3,10 +3,13 @@ import React from "react";
 import "@fontsource/inter";
 import { Link } from "react-router-dom";
 import HoodieVideo from "../../assets/videoplayback-VEED.gif";
+import GradientText from "../ui/GradientText/GradientText.jsx";
+import './Page.css';
 
 const Page = () => {
   return (
     <Box
+    className="page"
       sx={{
         position: "relative",
         height: "521px",
@@ -16,6 +19,7 @@ const Page = () => {
     >
       <Box
         component="iframe"
+        className="video-container"
         src={HoodieVideo}
         alt="3D Hoodie Animation"
         sx={{
@@ -38,6 +42,7 @@ const Page = () => {
         >
           <Typography
             variant="h1"
+            className="page-text"
             sx={{
               width: "455px",
               mb: 2,
@@ -49,11 +54,21 @@ const Page = () => {
               color: "white",
             }}
           >
-            Wear What <span className="gradient-text">Moves</span> You
+            Wear What{" "}
+            <GradientText
+              colors={["#7c3aed", "#82e0f5", "#7c3aed", "#82e0f5", "#7c3aed"]}
+              animationSpeed={10}
+              showBorder={false}
+              className="custom-class"
+            >
+              Moves
+            </GradientText>
+            You
           </Typography>
 
           <Typography
             variant="body1"
+            className="page-para-text"
             sx={{
               mb: 4,
               color: "#CCCCCC",
@@ -66,6 +81,7 @@ const Page = () => {
           <Box sx={{ display: "flex", gap: 2 }}>
             <Button
               variant="contained"
+              className="shop-button"
               color="primary"
               sx={{
                 width: "125px",
@@ -90,6 +106,7 @@ const Page = () => {
 
             <Button
               variant="contained"
+              className="studio-button"
               color="secondary"
               sx={{
                 width: "146px",

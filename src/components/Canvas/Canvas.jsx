@@ -94,7 +94,7 @@ const Customizer = forwardRef(function Customizer(
         style={{
           height: fullscreen.value ? "100vh" : "600px",
           background:
-            "linear-gradient(to bottom, #f0f0f0, rgba(240,240,240,0.5))",
+            "transparent",
         }}
       >
         <PerspectiveCamera makeDefault position={[0, 0, zoom.value]} />

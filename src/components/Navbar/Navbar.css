@@ -15,6 +15,11 @@
   align-items: center;
 }
 
+body.dark .nav-bar {
+  background-color: #25252599;
+  border-color: #333333;
+}
+
 .nav-icons {
   display: flex;
   align-items: center;
@@ -41,6 +46,15 @@
   background-color: #f1f5f9;
 }
 
+body.dark .nav-icons button.in {
+  color: #f8fafc;
+}
+
+body.dark .nav-icons button.in:hover {
+  color: #3acaed;
+  background-color: #66666699;
+}
+
 .nav-bar svg {
   width: 16px;
   height: 16px;
@@ -65,12 +79,20 @@
   transition: width 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+body.dark .line {
+  background-color: #3acaed;
+}
+
 .nav-links a:hover {
   color: #7c3aed;
 
   .line {
     width: 100%;
   }
+}
+
+body.dark .nav-links a:hover {
+  color: #3acaed;
 }
 
 .nav-bar .nav-links {
@@ -86,6 +108,10 @@
   color: #7c3aed !important;
 }
 
+body.dark .active-page {
+  color: #3acaed !important;
+}
+
 .nav-bar .text-wrapper-2 {
   font-family: "Inter";
   font-weight: 500;
@@ -94,6 +120,11 @@
   position: relative;
   color: #2b2e31;
 }
+
+body.dark .nav-bar .text-wrapper-2 {
+  color: #f8fafc;
+}
+
 
 .cart-count {
   position: absolute;
@@ -109,6 +140,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+body.dark .cart-count {
+  background-color: #3acaede6;
 }
 
 div.logo {
@@ -128,6 +163,14 @@ div.logo {
   color: #7c3aed;
 }
 
+body.dark .logo a {
+  color: #f8fafc;
+}
+
+body.dark .logo span {
+  color: #3acaed;
+}
+
 .auth-button {
   color: #f8fafc;
   background-color: #7c3aed;
@@ -141,6 +184,14 @@ div.logo {
 
 .auth-button:hover {
   background-color: #7c3aede6;
+}
+
+body.dark .auth-button {
+  background-color: #3acaed;
+}
+
+body.dark .auth-button:hover {
+  background-color: #3acaede6;
 }
 
 /* Popper */

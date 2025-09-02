@@ -1,60 +1,95 @@
 .settings-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 8px;
-    font-family: "Segoe UI", sans-serif;
-    transition: background 0.3s ease;
-  }
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  border-radius: 12px;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.settings-container.light {
+  background: linear-gradient(135deg, #ffffff, #f3f4f6);
+  color: #2d2d2d;
+}
+
+.settings-heading {
+  margin-bottom: 1.5rem;
+}
+
+.settings-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: inherit;
+}
+
+.settings-group input,
+.settings-group select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.settings-container.dark .settings-group input,
+.settings-container.dark .settings-group select {
+  background-color: #2e2e2e;
+  border-color: #444;
+  color: #eee;
+}
+
+.settings-group input:focus,
+.settings-group select:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
+}
+
+.settings-group input[type="checkbox"] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+  accent-color: #7c3aed;
+}
+
+.avatar-preview {
+  margin-top: 0.75rem;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.avatar-preview:hover {
+  transform: scale(1.05);
+}
+
+.save-btn {
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.4rem;
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-btn:hover {
+  background-color: #5b2bcf;
+  transform: translateY(-1px);
   
-  .settings-container.light {
-    background: #f9f9f9;
-    color: #333;
-  }
-  
-  .settings-container.dark {
-    background: #1e1e1e;
-    color: #eee;
-  }
-  
-  .settings-group {
-    margin-bottom: 1.2rem;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .settings-group label {
-    margin-bottom: 0.4rem;
-    font-weight: 500;
-  }
-  
-  .settings-group input,
-  .settings-group select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .settings-group input[type="checkbox"] {
-    margin-right: 0.5rem;
-  }
-  
-  .avatar-preview {
-    margin-top: 0.5rem;
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-  }
-  
-  .save-btn {
-    margin-top: 1rem;
-    padding: 0.6rem 1.2rem;
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
+}

@@ -1,3 +1,4 @@
+import React from "react";
 import "./NotFound.css";
 import Image from "./assets/flying-saucer.avif";
 

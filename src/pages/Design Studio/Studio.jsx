@@ -1,3 +1,4 @@
+import React from "react";
 import { useRef, useState } from "react";
 import Customizer from "../../components/Canvas/Canvas.jsx";
 import CustomizePanel from "../../components/CustomizePanel/CustomizePanel.jsx";
@@ -8,7 +9,7 @@ function Studio() {
   const [zoom, setZoom] = useState(5);
   const [fullscreen, setFullscreen] = useState(false);
   const [activeDirection, setActiveDirection] = useState("F");
-  const [hoodieColor, setHoodieColor] = useState("#159B9D");
+  const [hoodieColor, setHoodieColor] = useState("#000000");
 
   const handleDirectionClick = (dir) => {
     customizerRef.current?.setDirection(dir);

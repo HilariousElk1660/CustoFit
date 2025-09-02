@@ -1,3 +1,4 @@
+import React from "react";
 import { useCart } from "../../context/CartContext";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";

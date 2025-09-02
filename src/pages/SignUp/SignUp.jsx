@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import "./SignUp.css";
+import React from "react";
 import { useState, useEffect } from "react";
 
 function SignUp({ setIsAuthenticated }) {
