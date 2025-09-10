@@ -3,6 +3,11 @@ export const products = [
     id: 1,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/boxie%20hoodie.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/boxie%20hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
+    ],
     name: "Boxy Hoodie",
     description: "Warm and stylish hoodie.",
     price: 400,
@@ -17,6 +22,11 @@ export const products = [
     id: 2,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
+    ],
     name: "Classic T-Shirt",
     description: "Soft cotton t-shirt.",
     price: 250,
@@ -31,6 +41,11 @@ export const products = [
     id: 3,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
+    ],
     name: "Crewneck Sweatshirt",
     description: "Cozy and casual.",
     price: 350,
@@ -45,6 +60,11 @@ export const products = [
     id: 4,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/long%20sleeve.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/long%20sleeve.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/long%20sleeve.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/long%20sleeve.jpg",
+    ],
     name: "Long Sleeve Tee",
     description: "Warm long sleeve.",
     price: 300,
@@ -59,6 +79,11 @@ export const products = [
     id: 5,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/bucket%20hat.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/bucket%20hat.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/bucket%20hat.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/bucket%20hat.jpg",
+    ],
     name: "Bucket Hat",
     description: "Trendy bucket hat.",
     price: 150,
@@ -73,6 +98,11 @@ export const products = [
     id: 6,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/beanie.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/beanie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/beanie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/beanie.jpg",
+    ],
     name: "Knitted Beanie",
     description: "Warm knitted beanie.",
     price: 200,
@@ -86,6 +116,7 @@ export const products = [
   {
     id: 7,
     image: "",
+    thumbnails: [],
     name: "Ski Mask",
     description: "Comfortable ski mask.",
     price: 250,
@@ -99,6 +130,11 @@ export const products = [
     id: 8,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/polo%20shirt.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/polo%20shirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/polo%20shirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/polo%20shirt.jpg",
+    ],
     name: "Polo Shirt",
     description: "Smart casual polo.",
     price: 300,
@@ -113,6 +149,11 @@ export const products = [
     id: 9,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/hoodie.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/hoodie.jpg",
+    ],
     name: "Premium Hoodie",
     description: "Classic warm hoodie.",
     price: 400,
@@ -128,6 +169,11 @@ export const products = [
     id: 10,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/op%20hoodie.jpeg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/op%20hoodie.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/op%20hoodie.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/op%20hoodie.jpeg",
+    ],
     name: "One Piece Hoodie",
     description: "Straw Hat Pirates hoodie.",
     price: 480,
@@ -142,6 +188,11 @@ export const products = [
     id: 11,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/naruto%20tee.jpeg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/naruto%20tee.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/naruto%20tee.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/naruto%20tee.jpeg",
+    ],
     name: "Naruto Tee",
     description: "Naruto Uzumaki tee.",
     price: 320,
@@ -156,6 +207,11 @@ export const products = [
     id: 12,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/demon%20slayer.png",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/demon%20slayer.png",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/demon%20slayer.png",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/demon%20slayer.png",
+    ],
     name: "Demon Slayer Tee",
     description: "Demon Slayer Corps tee.",
     price: 320,
@@ -170,6 +226,11 @@ export const products = [
     id: 13,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/gojo%20tee.jpeg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/gojo%20tee.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/gojo%20tee.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/gojo%20tee.jpeg",
+    ],
     name: "Gojo Satoru Tee",
     description: "Gojo inspired tee.",
     price: 335,
@@ -184,6 +245,11 @@ export const products = [
     id: 14,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/itachi%20hoodie.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/itachi%20hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/itachi%20hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/itachi%20hoodie.jpg",
+    ],
     name: "Itachi Hoodie",
     description: "Itachi Uchiha hoodie.",
     price: 460,
@@ -198,6 +264,11 @@ export const products = [
     id: 15,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/itatchi%20tee.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/itatchi%20tee.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/itatchi%20tee.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/itatchi%20tee.jpg",
+    ],
     name: "Itachi Tee",
     description: "Itachi Uchiha tee.",
     price: 330,
@@ -212,6 +283,11 @@ export const products = [
     id: 16,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/japanese%20themed%20tee.jpeg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/japanese%20themed%20tee.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/japanese%20themed%20tee.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/japanese%20themed%20tee.jpeg",
+    ],
     name: "Japanese Kanji Tee",
     description: "Minimal kanji graphic tee.",
     price: 310,
@@ -226,6 +302,11 @@ export const products = [
     id: 17,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/madara%20tee.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/madara%20tee.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/madara%20tee.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/madara%20tee.jpg",
+    ],
     name: "Madara Tee",
     description: "Madara Uchiha tee.",
     price: 350,
@@ -240,6 +321,11 @@ export const products = [
     id: 18,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/anime%20custom%20tee%202.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/anime%20custom%20tee%202.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/anime%20custom%20tee%202.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/anime%20custom%20tee%202.jpg",
+    ],
     name: "Custom Anime Tee",
     description: "Unique anime design tee.",
     price: 300,
@@ -254,6 +340,11 @@ export const products = [
     id: 19,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/Aot%20hoodie.webp",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/Aot%20hoodie.webp",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/Aot%20hoodie.webp",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/Aot%20hoodie.webp",
+    ],
     name: "Attack on Titan Hoodie",
     description: "Scout Regiment inspired hoodie.",
     price: 450,
@@ -268,6 +359,11 @@ export const products = [
     id: 20,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/op%20tee.jpeg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/op%20tee.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/op%20tee.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/op%20tee.jpeg",
+    ],
     name: "One Piece Tee",
     description: "One Piece crew tee.",
     price: 325,
@@ -282,6 +378,11 @@ export const products = [
     id: 21,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/rick%20tee.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/rick%20tee.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/rick%20tee.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/rick%20tee.jpg",
+    ],
     name: "Rick & Morty Tee",
     description: "Cartoon inspired tee.",
     price: 300,
@@ -296,6 +397,11 @@ export const products = [
     id: 22,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20hoodie.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20hoodie.jpg",
+    ],
     name: "Solo Leveling Hoodie",
     description: "Sung Jin-Woo hoodie.",
     price: 470,
@@ -310,6 +416,11 @@ export const products = [
     id: 23,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20tee%201.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20tee%201.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20tee%201.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20tee%201.jpg",
+    ],
     name: "Solo Leveling Tee",
     description: "Shadow Monarch tee.",
     price: 330,
@@ -324,6 +435,11 @@ export const products = [
     id: 24,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20tee%202.jpg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20tee%202.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20tee%202.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/solo%20tee%202.jpg",
+    ],
     name: "Solo Leveling Tee 2",
     description: "Alt Solo Leveling tee.",
     price: 340,
@@ -338,6 +454,11 @@ export const products = [
     id: 25,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/anime%20thing%20hoodie.jpeg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/anime%20thing%20hoodie.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/anime%20thing%20hoodie.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/anime%20thing%20hoodie.jpeg",
+    ],
     name: "Anime Thing Hoodie",
     description: "Bold anime hoodie.",
     price: 470,
@@ -352,6 +473,11 @@ export const products = [
     id: 26,
     image:
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/dbz%20hoodie.jpeg",
+    thumbnails: [
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/dbz%20hoodie.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/dbz%20hoodie.jpeg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Anime%20Selection/dbz%20hoodie.jpeg",
+    ],
     name: "Dragon Ball Z Hoodie",
     description: "Goku Super Saiyan hoodie.",
     price: 320,

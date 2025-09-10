@@ -16,6 +16,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useRef, useEffect, useState } from "react";
 import "./ChatModal.css";
 import { SparklesIcon } from "../../assets/Icons";
+import AI2 from "../../assets/AI2.gif";
 
 export function ChatModal({ isOpen, onClose, user, isAuthenticated }) {
   const [messages, setMessages] = useState([]);
@@ -161,8 +162,8 @@ export function ChatModal({ isOpen, onClose, user, isAuthenticated }) {
                     }}
                   >
                     <img
-                      style={{ height: "100%" }}
-                      src="https://trello-burndown-chart.vercel.app/logo.png"
+                      style={{ height: "100%", filter: "hue-rotate(45deg)" }}
+                      src={AI2}
                       alt=""
                     />
                   </Avatar>

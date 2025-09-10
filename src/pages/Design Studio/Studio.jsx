@@ -9,7 +9,12 @@ function Studio() {
   const [zoom, setZoom] = useState(5);
   const [fullscreen, setFullscreen] = useState(false);
   const [activeDirection, setActiveDirection] = useState("F");
-  const [hoodieColor, setHoodieColor] = useState("#000000");
+  const [hoodieColors, setHoodieColors] = useState({
+    part1: "#000000",
+    part2: "#000000",
+    part3: "#000000",
+    part4: "#000000",
+  });
 
   const handleDirectionClick = (dir) => {
     customizerRef.current?.setDirection(dir);
@@ -47,9 +52,13 @@ function Studio() {
                   ref={customizerRef}
                   zoom={{ value: zoom, set: setZoom }}
                   fullscreen={{ value: fullscreen, set: setFullscreen }}
-                  baseColor={hoodieColor}
-                  accentColor="#FF6F61"
+                  hoodieColors={hoodieColors}
                 />
+
+                {/* <CustomizePanel
+                  hoodieColors={hoodieColors}
+                  setHoodieColors={setHoodieColors}
+                /> */}
               </div>
               <div className="studio-controls">
                 {["F", "B", "L", "R"].map((dir) => (
@@ -147,8 +156,8 @@ function Studio() {
             </div>
           </div>
           <CustomizePanel
-            hoodieColor={hoodieColor}
-            setHoodieColor={setHoodieColor}
+            hoodieColors={hoodieColors}
+            setHoodieColors={setHoodieColors}
           />
         </div>
       </div>

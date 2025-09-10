@@ -3,23 +3,24 @@ import "./CustomizePanel.css";
 import { products as productData } from "../../pages/Products/productData.jsx";
 import { useCart } from "../../context/CartContext";
 import ExportOptions from "../ExportOption/ExportOptions.jsx";
+import UploadIcon from "../../assets/UploadFiles.gif";
 
-const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
+const CustomizePanel = ({ hoodieColors, setHoodieColors }) => {
   const { addItem } = useCart();
 
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [panelMode, setPanelMode] = useState("customize");
+
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [showSizeDropdown, setShowSizeDropdown] = useState(false);
-  const [panelMode, setPanelMode] = useState("customize");
-  
-  const handleToggle = (mode) => {
-    if (mode !== panelMode) {
-      setPanelMode(mode);
-    }
-  };
+
+  const [materialPreset, setMaterialPreset] = useState("Basic");
+  const [uploadedDesign, setUploadedDesign] = useState(null);
+  const [activeView, setActiveView] = useState("Front");
+  const [showViewModal, setShowViewModal] = useState(false);
 
   useEffect(() => {
     const filtered = productData.filter((p) => p.customisable);
@@ -29,6 +30,10 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
       setSize(filtered[0].sizes[0]);
     }
   }, []);
+
+  const handleToggle = (mode) => {
+    if (mode !== panelMode) setPanelMode(mode);
+  };
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>
@@ -43,12 +48,29 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
       price: selectedProduct.price,
       description: selectedProduct.description,
       size,
-      color: hoodieColor,
+      color: hoodieColors,
       quantity,
       image: selectedProduct.image,
+      design: uploadedDesign,
+      material: materialPreset,
     };
 
     addItem(item, quantity);
+  };
+
+  const handleDesignUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setUploadedDesign(reader.result);
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCopyToClipboard = () => {
+    if (uploadedDesign) {
+      navigator.clipboard.writeText(uploadedDesign);
+    }
   };
 
   return (
@@ -56,7 +78,9 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
       {/* Tabs */}
       <div className="customize-panel-content-header">
         <button
-          className={`toggle-button ${panelMode === "customize" ? "active" : ""}`}
+          className={`toggle-button ${
+            panelMode === "customize" ? "active" : ""
+          }`}
           onClick={() => handleToggle("customize")}
         >
           Customize
@@ -73,19 +97,17 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
       <div className="customize-panel-body">
         {panelMode === "customize" ? (
           <>
-            {/* Header */}
             <div className="panel-view">
-              <h3>Customise Your Design</h3>
-              <p>Select product, colors, and materials</p>
+              <h3>Customise Your Hoodie</h3>
+              <p>Select product, material, color, and upload your design</p>
             </div>
 
             <div className="customize-panel-container">
               <div className="customize-panel-content-body">
                 {/* Product Selection */}
                 <div className="item">
-                  <label htmlFor="model-type">Product</label>
+                  <label>Product</label>
                   <button
-                    id="model-type"
                     className={`products-dropdown ${
                       showProductDropdown ? "open" : ""
                     }`}
@@ -133,29 +155,89 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
                   )}
                 </div>
 
-                {/* Color Picker */}
+                {/* Material Tabs */}
+                <div className="item mt-16">
+                  <label>Material</label>
+                  <div className="material-tabs">
+                    {["Basic", "Metallic", "Clay"].map((preset) => (
+                      <button
+                        key={preset}
+                        className={`material-tab ${
+                          materialPreset === preset ? "active" : ""
+                        }`}
+                        onClick={() => setMaterialPreset(preset)}
+                      >
+                        {preset}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Upload Trigger */}
+                <div className="item mt-16">
+                  <div
+                    className="upload-trigger"
+                    onClick={() => setShowViewModal(true)}
+                  >
+                    <span>Upload your design</span>
+                    <span className="upload-icon grey">✏️</span>
+                  </div>
+                </div>
+
+                {/* Color Selection */}
                 <div className="item mt-16">
                   <label htmlFor="color-selection">Color Selection</label>
                   <div className="color-selection">
                     <input
                       type="color"
-                      value={hoodieColor}
-                      id="color-selection"
                       className="color-picker"
-                      onChange={(e) => setHoodieColor(e.target.value)}
+                      value={hoodieColors.part1}
+                      onChange={(e) =>
+                        setHoodieColors((prev) => ({
+                          ...prev,
+                          part1: e.target.value,
+                        }))
+                      }
                     />
-                    <abbr title="Color Preview">
-                      <div
-                        className="color-preview"
-                        style={{ backgroundColor: hoodieColor }}
-                      ></div>
-                    </abbr>
+                    <input
+                      type="color"
+                      className="color-picker"
+                      value={hoodieColors.part2}
+                      onChange={(e) =>
+                        setHoodieColors((prev) => ({
+                          ...prev,
+                          part2: e.target.value,
+                        }))
+                      }
+                    />
+                    <input
+                      type="color"
+                      className="color-picker"
+                      value={hoodieColors.part3}
+                      onChange={(e) =>
+                        setHoodieColors((prev) => ({
+                          ...prev,
+                          part3: e.target.value,
+                        }))
+                      }
+                    />
+                    <input
+                      type="color"
+                      className="color-picker"
+                      value={hoodieColors.part4}
+                      onChange={(e) =>
+                        setHoodieColors((prev) => ({
+                          ...prev,
+                          part4: e.target.value,
+                        }))
+                      }
+                    />
                   </div>
                 </div>
 
                 {/* Size Selection */}
                 <div className="item mt-16">
-                  <label htmlFor="size-selection">Size</label>
+                  <label>Size</label>
                   <button
                     className="size-dropdown"
                     onClick={() => setShowSizeDropdown((prev) => !prev)}
@@ -193,7 +275,7 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
 
                 {/* Quantity */}
                 <div className="item mt-16">
-                  <label htmlFor="quantity">Quantity</label>
+                  <label>Quantity</label>
                   <div className="mt-16">
                     <button className="button1" onClick={decrementQuantity}>
                       -
@@ -202,7 +284,6 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
                       type="number"
                       value={quantity}
                       min="1"
-                      id="quantity"
                       className="quantity-input"
                       readOnly
                     />
@@ -228,11 +309,108 @@ const CustomizePanel = ({ hoodieColor, setHoodieColor }) => {
                 Add to Cart
               </button>
             </div>
+
+            {/* Modal */}
+            {showViewModal && (
+              <div
+                className="view-modal-overlay"
+                onClick={() => setShowViewModal(false)}
+              >
+                <div
+                  className="view-modal"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="view-tabs">
+                    {["Front", "Back", "Left Sleeve", "Right Sleeve"].map(
+                      (view) => (
+                        <button
+                          key={view}
+                          className={`view-tab ${
+                            activeView === view ? "active" : ""
+                          }`}
+                          onClick={() => setActiveView(view)}
+                        >
+                          {view}
+                        </button>
+                      )
+                    )}
+                  </div>
+
+                  {!uploadedDesign ? (
+                    <div
+                      className="upload-zone"
+                      onClick={() =>
+                        document.getElementById("design-upload").click()
+                      }
+                    >
+                      <div className="upload-icon">
+                        <img src={UploadIcon} alt="Upload Icon" />
+                      </div>
+                      <span className="upload-text">
+                        Upload your design here
+                      </span>
+                      <p className="upload-subtext">
+                        Recommended resolution: 1920 × 1920 (1:1)
+                      </p>
+
+                      <input
+                        type="file"
+                        id="design-upload"
+                        accept="image/*"
+                        style={{ display: "none" }}
+                        onChange={handleDesignUpload}
+                      />
+                    </div>
+                  ) : (
+                    <div className="preview-wrapper">
+                      <div className="preview-card">
+                        <img
+                          src={uploadedDesign}
+                          alt="Uploaded Design"
+                          className="preview-image"
+                        />
+
+                        <div className="preview-actions">
+                          <button
+                            onClick={handleCopyToClipboard}
+                            className="preview-button"
+                          >
+                            📋 Copy
+                          </button>
+                          <button
+                            onClick={() => setUploadedDesign(null)}
+                            className="preview-button"
+                          >
+                            ❌ Remove
+                          </button>
+                        </div>
+
+                        <div className="preview-footer">
+                          <button
+                            onClick={() => setShowViewModal(false)}
+                            className="done-button"
+                          >
+                            Done
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* <div className="modal-footer">
+                    <button
+                      className="close-modal"
+                      onClick={() => setShowViewModal(false)}
+                    >
+                      Done
+                    </button>
+                  </div> */}
+                </div>
+              </div>
+            )}
           </>
         ) : (
-          <div className="panel-view">
-            <ExportOptions hoodieColor={hoodieColor} />
-          </div>
+          <ExportOptions uploadedDesign={uploadedDesign} />
         )}
       </div>
     </div>

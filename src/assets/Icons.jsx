@@ -119,4 +119,87 @@ const DownloadIcon = (props) => (
   </svg>
 );
 
-export { SparklesIcon, MoonIcon, CartIcon, DownloadIcon, UserIcon, MenuIcon };
+const UploadIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 300 300"
+    width="300"
+    height="300"
+    preserveAspectRatio="xMidYMid meet"
+    style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;"
+  >
+    <defs>
+      <clipPath id="__lottie_element_2">
+        <rect width="300" height="300" x="0" y="0"></rect>
+      </clipPath>
+    </defs>
+    <g clip-path="url(#__lottie_element_2)">
+      <g
+        transform="matrix(1,0,0,1,76.66199493408203,98.28499603271484)"
+        opacity="1"
+        style="display: block;"
+      >
+        <g
+          opacity="1"
+          transform="matrix(1,0,0,1,71.95899963378906,50.01100158691406)"
+        >
+          <path
+            stroke-linecap="butt"
+            stroke-linejoin="miter"
+            fill-opacity="0"
+            stroke-miterlimit="10"
+            stroke="rgb(187,190,193)"
+            stroke-opacity="1"
+            stroke-width="3"
+            d=" M60.01499938964844,6.980000019073486 C59.380001068115234,6.136000156402588 58.6870002746582,5.3379998207092285 57.939998626708984,4.593999862670898"
+          ></path>
+        </g>
+        <g
+          opacity="1"
+          transform="matrix(1,0,0,1,71.95899963378906,50.01100158691406)"
+        >
+          <path
+            stroke-linecap="butt"
+            stroke-linejoin="miter"
+            fill-opacity="0"
+            stroke-miterlimit="10"
+            stroke="rgb(187,190,193)"
+            stroke-opacity="1"
+            stroke-width="3"
+            d=" M64.45999908447266,20.308000564575195 C64.45999908447266,15.803999900817871 63.11899948120117,11.61400032043457 60.81399917602539,8.11400032043457"
+          ></path>
+        </g>
+        <g
+          opacity="1"
+          transform="matrix(1,0,0,1,70.82599639892578,65.26799774169922)"
+        >
+          <path
+            stroke-linecap="butt"
+            stroke-linejoin="miter"
+            fill-opacity="0"
+            stroke-miterlimit="10"
+            stroke="rgb(187,190,193)"
+            stroke-opacity="1"
+            stroke-width="3"
+            d="M0 0"
+          ></path>
+        </g>
+        <g opacity="1" transform="matrix(1,0,0,1,0,0)">
+          <path
+            stroke-linecap="butt"
+            stroke-linejoin="miter"
+            fill-opacity="0"
+            stroke-miterlimit="10"
+            stroke="rgb(187,190,193)"
+            stroke-opacity="1"
+            stroke-width="3"
+            d=" M70.82599639892578,112.94499969482422 C70.82599639892578,112.94499969482422 70.82599639892578,111.947998046875 70.82599639892578,110.22000122070312"
+          ></path>
+        </g>
+      </g>
+    </g>
+  </svg>
+);
+
+export { SparklesIcon, MoonIcon, CartIcon, DownloadIcon, UploadIcon, UserIcon, MenuIcon };

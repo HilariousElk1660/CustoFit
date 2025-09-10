@@ -18,20 +18,29 @@ import {
 import { Paper } from "@mui/material";
 import { motion } from "framer-motion";
 
-function Model({ baseColor = "#000000", accentColor = "#FFFFFF" }) {
-  const { scene } = useGLTF("/models/hoodie.glb");
+function Model({ hoodieColors }) {
+  const { scene } = useGLTF("/models/oversized-hoodie.glb");
 
   useEffect(() => {
+    if (!hoodieColors) return;
+
     scene.traverse((child) => {
       if (child.isMesh && child.material) {
         const name = child.name.toLowerCase();
-        if (name.includes("hoodie") || name.includes("body")) {
-          child.material.color.set(baseColor);
-          child.material.needsUpdate = true;
+
+        if (name.includes("_1")) {
+          child.material.color.set(hoodieColors.part1);
+        } else if (name.includes("_2")) {
+          child.material.color.set(hoodieColors.part2);
+        } else if (name.includes("_3")) {
+          child.material.color.set(hoodieColors.part3);
+        } else if (name.includes("_4")) {
+          child.material.color.set(hoodieColors.part4);
         }
+        child.material.needsUpdate = true;
       }
     });
-  }, [scene, baseColor]);
+  }, [scene, hoodieColors]);
 
   return (
     <group>
@@ -50,12 +59,17 @@ function Model({ baseColor = "#000000", accentColor = "#FFFFFF" }) {
 }
 
 const Customizer = forwardRef(function Customizer(
-  { zoom, fullscreen, baseColor, accentColor },
+  { zoom, fullscreen, hoodieColors },
   ref
 ) {
   const controlsRef = React.useRef();
 
-  const handleResetCamera = () => controlsRef.current?.reset();
+  const handleResetCamera = () => {
+    if (!controlsRef.current) return;
+    controlsRef.current.object.position.set(0, 0, 250);
+    controlsRef.current.target.set(0, 0, 0);
+    controlsRef.current.update();
+  };
   const handleZoomIn = () => zoom.set((prev) => Math.max(prev - 1, 2));
   const handleZoomOut = () => zoom.set((prev) => Math.min(prev + 1, 10));
   const toggleFullscreen = () => fullscreen.set((prev) => !prev);
@@ -93,11 +107,10 @@ const Customizer = forwardRef(function Customizer(
         shadows
         style={{
           height: fullscreen.value ? "100vh" : "600px",
-          background:
-            "transparent",
+          background: "transparent",
         }}
       >
-        <PerspectiveCamera makeDefault position={[0, 0, zoom.value]} />
+        <PerspectiveCamera makeDefault position={[0, 0, 250]} />
         <ambientLight intensity={0.5} />
         <spotLight
           position={[10, 10, 10]}
@@ -113,7 +126,7 @@ const Customizer = forwardRef(function Customizer(
             </Html>
           }
         >
-          <Model baseColor={baseColor} accentColor={accentColor} />
+          <Model hoodieColors={hoodieColors} />
           <Environment preset="studio" />
         </Suspense>
         <OrbitControls
