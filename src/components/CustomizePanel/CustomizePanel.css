@@ -186,12 +186,19 @@ svg.dropdown-icon {
 
 .color-selection {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
   margin-top: 8px;
   padding: 8px 12px;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
+}
+
+.color-labels label {
+  width: calc(100% / 4);
+  text-align: center;
+  font-weight: 600 !important;
+  color: #7c3aed;
 }
 
 .color-picker {
@@ -436,7 +443,10 @@ svg.dropdown-icon {
 /* Modal Styles */
 .view-modal-overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;

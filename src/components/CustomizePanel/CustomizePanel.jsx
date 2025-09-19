@@ -188,50 +188,75 @@ const CustomizePanel = ({ hoodieColors, setHoodieColors }) => {
                 <div className="item mt-16">
                   <label htmlFor="color-selection">Color Selection</label>
                   <div className="color-selection">
-                    <input
-                      type="color"
-                      className="color-picker"
-                      value={hoodieColors.part1}
-                      onChange={(e) =>
-                        setHoodieColors((prev) => ({
-                          ...prev,
-                          part1: e.target.value,
-                        }))
-                      }
-                    />
-                    <input
-                      type="color"
-                      className="color-picker"
-                      value={hoodieColors.part2}
-                      onChange={(e) =>
-                        setHoodieColors((prev) => ({
-                          ...prev,
-                          part2: e.target.value,
-                        }))
-                      }
-                    />
-                    <input
-                      type="color"
-                      className="color-picker"
-                      value={hoodieColors.part3}
-                      onChange={(e) =>
-                        setHoodieColors((prev) => ({
-                          ...prev,
-                          part3: e.target.value,
-                        }))
-                      }
-                    />
-                    <input
-                      type="color"
-                      className="color-picker"
-                      value={hoodieColors.part4}
-                      onChange={(e) =>
-                        setHoodieColors((prev) => ({
-                          ...prev,
-                          part4: e.target.value,
-                        }))
-                      }
-                    />
+                    <div
+                      className="color-labels"
+                      style={{
+                        display: "flex",
+                        width: "100%",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <label htmlFor="part1">Front</label>
+                      <label htmlFor="part2">Back</label>
+                      <label htmlFor="part3">Left</label>
+                      <label htmlFor="part4">Right </label>
+                    </div>
+                    <div className="color-selection-inputs" style={{
+                      display: "flex",
+                      width: "100%",
+                      alignItems: "center",
+                      gap: "12px"
+                    }}>
+                      <input
+                        type="color"
+                        id="part1"
+                        className="color-picker"
+                        value={hoodieColors.part1}
+                        onChange={(e) =>
+                          setHoodieColors((prev) => ({
+                            ...prev,
+                            part1: e.target.value,
+                          }))
+                        }
+                      />
+                      <input
+                        type="color"
+                        id="part2"
+                        className="color-picker"
+                        value={hoodieColors.part2}
+                        onChange={(e) =>
+                          setHoodieColors((prev) => ({
+                            ...prev,
+                            part2: e.target.value,
+                          }))
+                        }
+                      />
+                      <input
+                        type="color"
+                        id="part3"
+                        className="color-picker"
+                        value={hoodieColors.part3}
+                        onChange={(e) =>
+                          setHoodieColors((prev) => ({
+                            ...prev,
+                            part3: e.target.value,
+                          }))
+                        }
+                      />
+                      <input
+                        type="color"
+                        id="part4"
+                        className="color-picker"
+                        value={hoodieColors.part4}
+                        onChange={(e) =>
+                          setHoodieColors((prev) => ({
+                            ...prev,
+                            part4: e.target.value,
+                          }))
+                        }
+                      />
+                    </div>
                   </div>
                 </div>
 
