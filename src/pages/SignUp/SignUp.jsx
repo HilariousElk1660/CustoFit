@@ -64,7 +64,7 @@ function SignUp({ setIsAuthenticated }) {
     const encodedPassword = btoa(formData.password);
 
     try {
-      const response = await fetch(`http://{{API_URL}}:3000/login`, {
+      const response = await fetch(`http://54.90.133.77:3000/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
