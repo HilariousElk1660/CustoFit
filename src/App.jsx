@@ -32,7 +32,7 @@ function ProtectedRoute({ isAuthenticated, children }) {
 }
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   // const [isAuthenticated, setIsAuthenticated] = useState(() => {
   //   return localStorage.getItem("isAuthenticated") === "true";
   // });
