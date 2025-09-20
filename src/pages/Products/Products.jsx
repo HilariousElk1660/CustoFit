@@ -22,7 +22,7 @@ export default function Products() {
   // useEffect(() => {
   //   (async () => {
   //     try {
-  //       const res = await fetch("http://localhost:3000/products", {
+  //       const res = await fetch(`http://{{API_URL}}:3000/products`, {
   //         headers: { Accept: "application/json" },
   //       });
   //       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -68,7 +68,7 @@ export default function Products() {
 
   // const handleAddToCart = async (productId) => {
   //   try {
-  //     const res = await fetch("http://localhost:3000/cart", {
+  //     const res = await fetch(`http://{{API_URL}}:3000/cart`, {
   //       method: "POST",
   //       headers: { "Content-Type": "application/json" },
   //       body: JSON.stringify({ productId, quantity: 1 }),

@@ -7,6 +7,8 @@ function SignUp({ setIsAuthenticated }) {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const queryParams = new URLSearchParams(location.search);
   const mode = queryParams.get("mode");
 
@@ -37,7 +39,7 @@ function SignUp({ setIsAuthenticated }) {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/signup", {
+      const res = await fetch(`http://{{API_URL}}:3000/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -62,7 +64,7 @@ function SignUp({ setIsAuthenticated }) {
     const encodedPassword = btoa(formData.password);
 
     try {
-      const response = await fetch("http://localhost:3000/signin", {
+      const response = await fetch(`http://{{API_URL}}:3000/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
