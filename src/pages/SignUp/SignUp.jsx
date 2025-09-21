@@ -1,18 +1,24 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import "./SignUp.css";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function SignUp({ setIsAuthenticated }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const fullUrl = new URL(window.location.href);
-  const url = `http://${fullUrl.searchParams.get('ip')}:3000`;
-  window.history.pushState({}, '', url);
-
   const queryParams = new URLSearchParams(location.search);
   const mode = queryParams.get("mode");
+  const ipFromUrl = queryParams.get("ip");
+
+  const [backendUrl, setBackendUrl] = useState(() => {
+    // initialize from URL or fallback to localStorage
+    const savedIp = localStorage.getItem("backendIp");
+    return ipFromUrl
+      ? `http://${ipFromUrl}:3000`
+      : savedIp
+      ? `http://${savedIp}:3000`
+      : null;
+  });
 
   const [formData, setFormData] = useState({
     name: "",
@@ -23,6 +29,15 @@ function SignUp({ setIsAuthenticated }) {
 
   const [isLoginActive, setIsLoginActive] = useState(false);
 
+  // 🔹 Watch for IP in URL and update localStorage + backendUrl
+  useEffect(() => {
+    if (ipFromUrl) {
+      localStorage.setItem("backendIp", ipFromUrl);
+      setBackendUrl(`http://${ipFromUrl}:3000`);
+    }
+  }, [ipFromUrl]);
+
+  // 🔹 Mode toggle (login/signup)
   useEffect(() => {
     if (mode === "login") setIsLoginActive(true);
     else if (mode === "signup") setIsLoginActive(false);
@@ -41,7 +56,7 @@ function SignUp({ setIsAuthenticated }) {
     }
 
     try {
-      const res = await fetch(`http://${url}:3000/signup`, {
+      const res = await fetch(`${backendUrl}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -66,7 +81,7 @@ function SignUp({ setIsAuthenticated }) {
     const encodedPassword = btoa(formData.password);
 
     try {
-      const response = await fetch(`http://${url}:3000/login`, {
+      const response = await fetch(`${backendUrl}/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,14 +95,14 @@ function SignUp({ setIsAuthenticated }) {
       const data = await response.json();
 
       if (!response.ok) {
-        console.error("Login failed:", data);
+        console.error("Login failed:", data, backendUrl);
         alert(data.error || "Login failed");
         return;
       }
 
       localStorage.setItem("isAuthenticated", "true");
       setIsAuthenticated(true);
-      alert(`Welcome back, ${data.name}!`)
+      alert(`Welcome back, ${data.name}!`);
       console.log("Login success:", data);
       navigate("/");
     } catch (error) {
