@@ -7,7 +7,9 @@ function SignUp({ setIsAuthenticated }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  const fullUrl = new URL(window.location.href);
+  const url = `http://${fullUrl.searchParams.get('ip')}:3000`;
+  window.history.pushState({}, '', url);
 
   const queryParams = new URLSearchParams(location.search);
   const mode = queryParams.get("mode");
@@ -39,7 +41,7 @@ function SignUp({ setIsAuthenticated }) {
     }
 
     try {
-      const res = await fetch(`http://{API_URL}:3000/signup`, {
+      const res = await fetch(`http://${url}:3000/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -64,7 +66,7 @@ function SignUp({ setIsAuthenticated }) {
     const encodedPassword = btoa(formData.password);
 
     try {
-      const response = await fetch(`http://{API_URL}:3000/login`, {
+      const response = await fetch(`http://${url}:3000/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
