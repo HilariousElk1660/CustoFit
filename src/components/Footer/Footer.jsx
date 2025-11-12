@@ -162,6 +162,7 @@ const Footer = () => {
           >
             © 2025 CustoFit. All rights reserved.
           </Typography>
+          <img src="https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Additional%20Media/payment-options.png" className="payment-options" />
           <Stack
             direction="row"
             spacing={3}
@@ -169,13 +170,13 @@ const Footer = () => {
               fontSize: "12px",
             }}
           >
-            <Link href="#" underline="none" sx={{ color: "#64748b" }}>
+            <Link href="#" className="footer-links" underline="none" sx={{ color: "#64748b" }}>
               Privacy Policy
             </Link>
-            <Link href="#" underline="none" sx={{ color: "#64748b" }}>
+            <Link href="#" className="footer-links" underline="none" sx={{ color: "#64748b" }}>
               Terms of Service
             </Link>
-            <Link href="#" underline="none" sx={{ color: "#64748b" }}>
+            <Link href="#" className="footer-links" underline="none" sx={{ color: "#64748b" }}>
               Cookie Policy
             </Link>
           </Stack>

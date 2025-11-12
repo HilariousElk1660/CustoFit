@@ -113,7 +113,7 @@ const SideCart = ({ open, onClose }) => {
               }}>
                 Cart
               </Button>
-              <Button fullWidth sx={{ mt: 1, color: "#7c3aed", textTransform: "none" }} onClick={handleContinueShopping}>
+              <Button fullWidth sx={{ mt: 1, color: "#fff", textTransform: "none" }} onClick={handleContinueShopping}>
                 Continue Shopping
               </Button>
             </Box>

@@ -2,11 +2,11 @@ export const products = [
   {
     id: 1,
     image:
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/boxie%20hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/boxy%20hoodie.jpg",
     thumbnails: [
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/boxie%20hoodie.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/boxy%20hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/mens%20hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/womens%20hoodie.jpg", 
     ],
     name: "Boxy Hoodie",
     description: "Warm and stylish hoodie.",
@@ -24,8 +24,8 @@ export const products = [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
     thumbnails: [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/tshirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/pocket%20tee.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/oversised%20tee.jpg",
     ],
     name: "Classic T-Shirt",
     description: "Soft cotton t-shirt.",
@@ -43,8 +43,8 @@ export const products = [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
     thumbnails: [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/sweatshirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/sweatshirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/long%20sleeve%20sweatshirt.jpg",
     ],
     name: "Crewneck Sweatshirt",
     description: "Cozy and casual.",
@@ -62,8 +62,8 @@ export const products = [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/long%20sleeve.jpg",
     thumbnails: [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/long%20sleeve.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/long%20sleeve.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/long%20sleeve.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/raglan%20long%20sleeve.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/v-neck%20long%20sleeve.jpg",
     ],
     name: "Long Sleeve Tee",
     description: "Warm long sleeve.",
@@ -81,8 +81,8 @@ export const products = [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/bucket%20hat.jpg",
     thumbnails: [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/bucket%20hat.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/bucket%20hat.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/bucket%20hat.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/roped%20bucket%20hat.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/orange%20bucket%20hat.jpg",
     ],
     name: "Bucket Hat",
     description: "Trendy bucket hat.",
@@ -100,8 +100,8 @@ export const products = [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/beanie.jpg",
     thumbnails: [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/beanie.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/beanie.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/beanie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/winter%20beanie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/pom%20pom%20beanie.jpg",
     ],
     name: "Knitted Beanie",
     description: "Warm knitted beanie.",
@@ -132,8 +132,8 @@ export const products = [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/polo%20shirt.jpg",
     thumbnails: [
       "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/polo%20shirt.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/polo%20shirt.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/polo%20shirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/oversized%20polo%20shirt.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/long%20sleeve%20polo%20shirt.jpg",
     ],
     name: "Polo Shirt",
     description: "Smart casual polo.",
@@ -148,11 +148,11 @@ export const products = [
   {
     id: 9,
     image:
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/sweatpants%201.jpg",
     thumbnails: [
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/hoodie.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/hoodie.jpg",
-      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Customizable/hoodie.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/sweatpants%201.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/sweatpants%202.jpg",
+      "https://ovyqedcljkayiue8.public.blob.vercel-storage.com/Thumbnails/sweatpants%203.jpg",
     ],
     name: "Premium Hoodie",
     description: "Classic warm hoodie.",

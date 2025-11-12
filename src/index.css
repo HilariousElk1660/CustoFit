@@ -3,6 +3,10 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+/* 
+body.dark .gradient-text {
+  background: linear-gradient(90deg, #4ade80, #82e0f5) !important;
+} */
 
 .css-51we07-MuiPopper-root {
   transform: translate(1265px, 64px);

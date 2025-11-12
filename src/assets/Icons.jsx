@@ -2,7 +2,7 @@ import React from "react";
 
 const SparklesIcon = ({ size = 16, color, className = "" }) => {
   const themeColor =
-    color ?? (document.body.className == "dark" ? "#3acaed" : "#7c3aed");
+    color ?? (document.body.className == "dark" ? "#4ade80" : "#7c3aed");
 
   return (
     <svg

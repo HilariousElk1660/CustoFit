@@ -77,9 +77,6 @@ function SignUp({ setIsAuthenticated }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    const encodedPassword = btoa(formData.password);
-
     try {
       const response = await fetch(`${backendUrl}/signin`, {
         method: "POST",
@@ -88,7 +85,8 @@ function SignUp({ setIsAuthenticated }) {
         },
         body: JSON.stringify({
           email: formData.email.trim(),
-          password: encodedPassword,
+          // send plaintext password; backend decodes stored base64 and compares to the provided plaintext
+          password: formData.password,
         }),
       });
 
@@ -102,7 +100,7 @@ function SignUp({ setIsAuthenticated }) {
 
       localStorage.setItem("isAuthenticated", "true");
       setIsAuthenticated(true);
-      alert(`Welcome back, ${data.name}!`);
+      alert(`Welcome back!`);
       console.log("Login success:", data);
       navigate("/");
     } catch (error) {
