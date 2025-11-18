@@ -51,6 +51,7 @@ export default function Products() {
     const matchesFilter =
       filter === "All" ||
       (filter === "Customisable" && p.customisable) ||
+      (filter === "Non-Customisable" && p.customisable === false) ||
       p.category?.toLowerCase() === filter.toLowerCase() ||
       p.tag?.toLowerCase() === filter.toLowerCase();
 
@@ -63,7 +64,7 @@ export default function Products() {
 
   const customisableProducts = filteredProducts.filter((p) => p.customisable);
   const nonCustomisableProducts = filteredProducts.filter(
-    (p) => !p.customisable
+    (p) => p.customisable === false
   );
 
   // const handleAddToCart = async (productId) => {

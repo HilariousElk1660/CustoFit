@@ -84,8 +84,8 @@ function SignUp({ setIsAuthenticated }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          name: formData.name.trim(),
           email: formData.email.trim(),
-          // send plaintext password; backend decodes stored base64 and compares to the provided plaintext
           password: formData.password,
         }),
       });
@@ -100,6 +100,17 @@ function SignUp({ setIsAuthenticated }) {
 
       localStorage.setItem("isAuthenticated", "true");
       setIsAuthenticated(true);
+
+      const userSettings = {
+        name: data.name || data.user?.name || "",
+        email: data.email || data.user?.email || formData.email.trim(),
+        notifications: data.notifications ?? data.user?.notifications ?? true,
+        theme: data.theme || data.user?.theme || "light",
+        avatar: data.avatar || data.user?.avatar || null,
+      };
+
+      localStorage.setItem("userSettings", JSON.stringify(userSettings));
+
       alert(`Welcome back!`);
       console.log("Login success:", data);
       navigate("/");

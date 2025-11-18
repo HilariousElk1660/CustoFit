@@ -32,10 +32,10 @@ function ProtectedRoute({ isAuthenticated, children }) {
 }
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-  // const [isAuthenticated, setIsAuthenticated] = useState(() => {
-  //   return localStorage.getItem("isAuthenticated") === "true";
-  // });
+  // const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem("isAuthenticated") === "true";
+  });
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
 

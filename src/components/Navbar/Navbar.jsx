@@ -24,12 +24,11 @@ function Navbar({ isAuthenticated, onCartClick, user, onLogout }) {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("userSettings"));
-    if (saved) {
-      setAvatar(saved.avatar || "");
-      setName(saved.name || "");
-    }
-  }, []);
+      const saved = JSON.parse(localStorage.getItem("userSettings"));
+      if (saved) {
+        setName(saved.name || "");
+      }
+    }, []);
 
   useEffect(() => {
     const handleStorageChange = () => {

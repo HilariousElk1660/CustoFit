@@ -125,7 +125,6 @@ body.dark .nav-bar .text-wrapper-2 {
   color: #a0a0a0;
 }
 
-
 .cart-count {
   position: absolute;
   top: 0px;
@@ -204,7 +203,7 @@ body.dark .auth-button:hover {
 
 .popper-greeting {
   font-weight: 600;
-  margin-bottom: 8px;
+  margin: auto 0;
   font-size: 14px;
 }
 
@@ -221,7 +220,9 @@ body.dark .auth-button:hover {
 
 .bd_btm {
   border-bottom: 1px solid #ccc;
-  padding-bottom: 16px;
+  padding-bottom: 10px;
+  justify-content: left;
+  gap: 15px;
 }
 
 .popper-link:hover {
