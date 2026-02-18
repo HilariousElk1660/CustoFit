@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import "./SignUp.css";
 import React, { useState, useEffect } from "react";
+import { GoogleIcon } from "../../assets/Icons.jsx";
 
 function SignUp({ setIsAuthenticated }) {
   const navigate = useNavigate();
@@ -8,16 +9,16 @@ function SignUp({ setIsAuthenticated }) {
 
   const queryParams = new URLSearchParams(location.search);
   const mode = queryParams.get("mode");
-  const ipFromUrl = queryParams.get("ip");
+  const ipFromUrl = "custofit-backend.onrender.com";
 
   const [backendUrl, setBackendUrl] = useState(() => {
     // initialize from URL or fallback to localStorage
     const savedIp = localStorage.getItem("backendIp");
     return ipFromUrl
-      ? `http://${ipFromUrl}:3000`
+      ? `http://${ipFromUrl}`
       : savedIp
-      ? `http://${savedIp}:3000`
-      : null;
+        ? `http://${savedIp}`
+        : null;
   });
 
   const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ function SignUp({ setIsAuthenticated }) {
   useEffect(() => {
     if (ipFromUrl) {
       localStorage.setItem("backendIp", ipFromUrl);
-      setBackendUrl(`http://${ipFromUrl}:3000`);
+      setBackendUrl(`http://${ipFromUrl}`);
     }
   }, [ipFromUrl]);
 
@@ -56,7 +57,7 @@ function SignUp({ setIsAuthenticated }) {
     }
 
     try {
-      const res = await fetch(`${backendUrl}/signup`, {
+      const res = await fetch(`https://custofit-backend.onrender.com/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -78,7 +79,7 @@ function SignUp({ setIsAuthenticated }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${backendUrl}/signin`, {
+      const response = await fetch(`https://custofit-backend.onrender.com/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -165,9 +166,8 @@ function SignUp({ setIsAuthenticated }) {
                       />
                     </div>
                     <div className="signup__password__input inputs__mt">
-                      <div className="password__forgot">
+                      <div className="password">
                         <label htmlFor="login__password">Password</label>
-                        <a>Forgot password?</a>
                       </div>
                       <input
                         id="login__password"
@@ -177,10 +177,23 @@ function SignUp({ setIsAuthenticated }) {
                         autoComplete="current-password"
                         name="password"
                       />
+                      <div className="password__forgot">
+                        <a>Forgot password?</a>
+                      </div>
                     </div>
                   </div>
                   <div className="signup__form__btn">
                     <button type="submit">Login</button>
+                  </div>
+
+                  <div className="login__divider">
+                    <span>or</span>
+                  </div>
+
+                  <div className="google__login__btn">
+                    <button type="button">
+                      <GoogleIcon /> Continue with Google
+                    </button>
                   </div>
                 </form>
               </div>
@@ -242,6 +255,16 @@ function SignUp({ setIsAuthenticated }) {
                   </div>
                   <div className="signup__form__btn">
                     <button type="submit">Create account</button>
+                  </div>
+
+                  <div className="signup__divider">
+                    <span>or</span>
+                  </div>
+
+                  <div className="google__signup__btn">
+                    <button type="button">
+                      <GoogleIcon /> Continue with Google
+                    </button>
                   </div>
                 </form>
               </div>

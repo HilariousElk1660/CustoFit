@@ -14,6 +14,7 @@ import SideCart from "./components/SideCart/SideCart.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Studio from "./pages/Design Studio/Studio.jsx";
 import Products from "./pages/Products/Products.jsx";
+import Contact from "./pages/Contact/Contact.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx";
 import Orders from "./pages/Orders/Orders.jsx";
@@ -84,6 +85,7 @@ function App() {
           path="*"
           element={<NotFound isAuthenticated={isAuthenticated} />}
         />
+        <Route path="/contact" element={<Contact />} />
         <Route
           path="/products"
           element={
