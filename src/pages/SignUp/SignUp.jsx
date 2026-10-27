@@ -9,17 +9,7 @@ function SignUp({ setIsAuthenticated }) {
 
   const queryParams = new URLSearchParams(location.search);
   const mode = queryParams.get("mode");
-  const ipFromUrl = "custofit-backend.onrender.com";
-
-  const [backendUrl, setBackendUrl] = useState(() => {
-    // initialize from URL or fallback to localStorage
-    const savedIp = localStorage.getItem("backendIp");
-    return ipFromUrl
-      ? `http://${ipFromUrl}`
-      : savedIp
-        ? `http://${savedIp}`
-        : null;
-  });
+  const backendUrl = "https://custofit-backend.onrender.com";
 
   const [formData, setFormData] = useState({
     name: "",
@@ -29,14 +19,6 @@ function SignUp({ setIsAuthenticated }) {
   });
 
   const [isLoginActive, setIsLoginActive] = useState(false);
-
-  // 🔹 Watch for IP in URL and update localStorage + backendUrl
-  useEffect(() => {
-    if (ipFromUrl) {
-      localStorage.setItem("backendIp", ipFromUrl);
-      setBackendUrl(`http://${ipFromUrl}`);
-    }
-  }, [ipFromUrl]);
 
   // 🔹 Mode toggle (login/signup)
   useEffect(() => {
@@ -57,7 +39,7 @@ function SignUp({ setIsAuthenticated }) {
     }
 
     try {
-      const res = await fetch(`https://custofit-backend.onrender.com/signup`, {
+      const res = await fetch(`${backendUrl}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -79,7 +61,7 @@ function SignUp({ setIsAuthenticated }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`https://custofit-backend.onrender.com/signin`, {
+      const response = await fetch(`${backendUrl}/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

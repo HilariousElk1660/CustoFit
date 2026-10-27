@@ -49,9 +49,9 @@ const Checkout = () => {
   );
   const tax = subtotal * 0.08;
   const shipping =
-    formData.shippingMethod == "express"
+    formData.shippingMethod === "express"
       ? 13.99
-      : formData.shippingMethod == "overnight"
+      : formData.shippingMethod === "overnight"
       ? 24.99
       : 0;
   const total = subtotal + tax + shipping;
@@ -93,6 +93,7 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = () => {
+    if (cartItems.length === 0) return;
     if (validateStep2()) {
       setTimeout(() => setShowSuccess(true), 800);
     }
@@ -105,11 +106,10 @@ const Checkout = () => {
   };
 
   const formatExpiryDate = (value) => {
-    const digits = value.replace(/D/g, "");
-    if (digits.length === 2) {
-      return digits.substring(0, 2) + "/" + digits.substring(2, 4);
-    }
-    return digits;
+    const digits = value.replace(/\D/g, "").slice(0, 4);
+    return digits.length > 2
+      ? `${digits.substring(0, 2)}/${digits.substring(2)}`
+      : digits;
   };
 
   useEffect(() => {
@@ -169,12 +169,10 @@ const Checkout = () => {
       <div className="checkout-container">
         <div className="checkout-content">
           <div className="checkout-header">
-            {/* <Link to="/cart"> */}
-            <button type="button" className="back-btn">
+            <Link to="/cart" className="back-btn">
               <ArrowLeft size={20} />
               Back
-            </button>
-            {/* </Link> */}
+            </Link>
           </div>
 
           <div className="progress-steps">

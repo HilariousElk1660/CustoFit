@@ -1,11 +1,12 @@
 import {
   BrowserRouter as Router,
   useLocation,
+  useNavigate,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import SignUp from "./pages/SignUp/SignUp.jsx";
 import Home from "./pages/Home/Home.jsx";
@@ -32,8 +33,8 @@ function ProtectedRoute({ isAuthenticated, children }) {
   return isAuthenticated ? children : <Navigate to="/signup" />;
 }
 
-function App() {
-  // const [isAuthenticated, setIsAuthenticated] = useState(true);
+function AppContent() {
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return localStorage.getItem("isAuthenticated") === "true";
   });
@@ -60,7 +61,7 @@ function App() {
   };
 
   return (
-    <Router>
+      <>
       <Navbar
         isAuthenticated={isAuthenticated}
         onCartClick={handleCartToggle}
@@ -150,6 +151,14 @@ function App() {
       />
 
       <Footer />
+      </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
