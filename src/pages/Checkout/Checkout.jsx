@@ -482,7 +482,7 @@ const Checkout = () => {
                           onChange={(e) =>
                             handleInputChange(
                               "cvv",
-                              e.target.value.replace(/D/g, "").substring(0, 4)
+                              e.target.value.replace(/\D/g, "").substring(0, 4)
                             )
                           }
                           placeholder="123"

@@ -23,6 +23,7 @@ import Settings from "./pages/Settings/Settings.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import { ChatButton } from "./components/Assistant/ChatButton.jsx";
 import { ChatModal } from "./components/Assistant/ChatModal.jsx";
+import { apiFetch } from "./lib/api.js";
 
 function ProtectedRoute({ isAuthenticated, children }) {
   const location = useLocation();
@@ -35,9 +36,11 @@ function ProtectedRoute({ isAuthenticated, children }) {
 
 function AppContent() {
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return localStorage.getItem("isAuthenticated") === "true";
-  });
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  React.useEffect(() => {
+    apiFetch("/me").then(() => setIsAuthenticated(true)).catch(() => setIsAuthenticated(false));
+  }, []);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
 
@@ -54,8 +57,8 @@ function AppContent() {
     ],
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
+  const handleLogout = async () => {
+    await apiFetch("/signout", { method: "POST" }).catch(() => {});
     setIsAuthenticated(false);
     navigate("/signup?mode=login");
   };

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import "./Orders.css";
+import { apiFetch } from "../../lib/api.js";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const stored = localStorage.getItem("orders");
-    setOrders(stored ? JSON.parse(stored) : []);
+    apiFetch("/orders").then((data) => setOrders(data.orders || data || [])).catch(() => setOrders([]));
   }, []);
 
   return (

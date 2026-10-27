@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./SignUp.css";
 import React, { useState, useEffect } from "react";
 import { GoogleIcon } from "../../assets/Icons.jsx";
+import { apiFetch } from "../../lib/api.js";
 
 function SignUp({ setIsAuthenticated }) {
   const navigate = useNavigate();
@@ -9,7 +10,6 @@ function SignUp({ setIsAuthenticated }) {
 
   const queryParams = new URLSearchParams(location.search);
   const mode = queryParams.get("mode");
-  const backendUrl = "https://custofit-backend.onrender.com";
 
   const [formData, setFormData] = useState({
     name: "",
@@ -39,19 +39,15 @@ function SignUp({ setIsAuthenticated }) {
     }
 
     try {
-      const res = await fetch(`${backendUrl}/signup`, {
+      const data = await apiFetch("/signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
-
-      if (!res.ok) throw new Error(data.error || "Signup failed");
-
+      setIsAuthenticated(true);
       alert("Sign up successful!");
       setFormData({ name: "", email: "", password: "", confirmPassword: "" });
-      navigate("/signup?mode=login");
+      navigate("/");
     } catch (err) {
       console.error("Sign up error:", err);
       alert(`Error: ${err.message}`);
@@ -61,27 +57,10 @@ function SignUp({ setIsAuthenticated }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${backendUrl}/signin`, {
+      const data = await apiFetch("/signin", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          password: formData.password,
-        }),
+        body: JSON.stringify({ email: formData.email.trim(), password: formData.password }),
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error("Login failed:", data, backendUrl);
-        alert(data.error || "Login failed");
-        return;
-      }
-
-      localStorage.setItem("isAuthenticated", "true");
       setIsAuthenticated(true);
 
       const userSettings = {
@@ -92,7 +71,7 @@ function SignUp({ setIsAuthenticated }) {
         avatar: data.avatar || data.user?.avatar || null,
       };
 
-      localStorage.setItem("userSettings", JSON.stringify(userSettings));
+      window.dispatchEvent(new CustomEvent("custofit:user", { detail: userSettings }));
 
       alert(`Welcome back!`);
       console.log("Login success:", data);
