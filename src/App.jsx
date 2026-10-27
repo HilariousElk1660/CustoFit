@@ -24,6 +24,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import { ChatButton } from "./components/Assistant/ChatButton.jsx";
 import { ChatModal } from "./components/Assistant/ChatModal.jsx";
 import { apiFetch } from "./lib/api.js";
+import { CartProvider } from "./context/CartContext.jsx";
 
 function ProtectedRoute({ isAuthenticated, children }) {
   const location = useLocation();
@@ -160,9 +161,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <CartProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </CartProvider>
   );
 }
 

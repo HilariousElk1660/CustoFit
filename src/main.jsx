@@ -1,6 +1,5 @@
 import React from "react";
 import { StrictMode } from "react";
-import { CartProvider } from './context/CartContext';
 import { createRoot } from "react-dom/client";
 import "@fontsource/inter";
 import "./index.css";
